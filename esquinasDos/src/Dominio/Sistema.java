@@ -1,14 +1,12 @@
 package Dominio;
 
-import Interfaz.Interfaz;
-
-import static Program.Program.pidoDatoIntPositivo;
-import static Program.Program.pidoDatoString;
-import static Program.Program.pidoDatosParaMovimientoValido;
+import Interfaz.Esquinas;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
+import java.io.Serializable;
 
-public class Sistema {
+public class Sistema extends Observable implements Serializable{
 
     //VARIABLES PRIVADAS DE LA CLASE SISTEMA
     private Partida partida;
@@ -48,21 +46,6 @@ public class Sistema {
         this.libroDeReglas = new Reglas();
     }
 
-    //ESTE METODO PERMITE REGISTRAR UN JUGADOR, ADEMAS CHEQUEA QUE EL ALIAS ES UNICO
-    public void registroJugador() {
-        Jugador jugador = new Jugador();
-        jugador.setEdad(pidoDatoIntPositivo("Ingrese la edad del jugador: ", 0, Integer.MAX_VALUE, 0));
-        jugador.setNombre(pidoDatoString("Ingrese el nombre del jugador: ", ""));
-        jugador.setJuegosGanados(0);
-        jugador.setAlias(pidoDatoString("Ingrese el alias del jugador (DEBE SER UNICO, SE COMPROBARA EXISTENCIA REPETIDA). ", ""));
-        for (int i = 0; i < listaJugadores.size(); i++) {
-            if (jugador.getAlias().equals(listaJugadores.get(i).getAlias())) {
-                jugador.setAlias(pidoDatoString("Ingrese el alias del jugador: ", jugador.getAlias()));
-            }
-        }
-        listaJugadores.add(jugador);
-    }
-
     //ESTE METODO VALIDA LA PRIMER COORDENADA DEL MOVIMIENTO
     public int primerCoordenadaMovimiento(String x) { //EXTRAIGO LA PRIMER COORDENADA DE LA FICHA A PONER
         int devolver = 0;
@@ -98,18 +81,28 @@ public class Sistema {
         return devolver;
     }
 
+    //HACER EL RANKING DE VUELTA COMPLETAMENTE
     //ESTE METODO RANKEA A LOS JUGADORES POR PARTIDAS GANADAS
     public void ranking() {
-        Interfaz interfaz = new Interfaz();
+        Esquinas interfaz = new Esquinas();
         Collections.sort(this.getListaJugadores());
         for (int i = 0; i < this.getListaJugadores().size(); i++) {
-            interfaz.imprimirJugadorEnPantallaParaSeleccion(this.getListaJugadores(), i);
+           // interfaz.imprimirJugadorEnPantallaParaSeleccion(this.getListaJugadores(), i);
         }
     }
+    
+    //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES
+    public void agregarUnJugador(Jugador unJugador) {
+        getListaJugadores().add(unJugador);
+        setChanged();
+        notifyObservers();
+    }
 
+    
+    /*
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
     public void jugarEntreJugadores() {
-        Interfaz interfaz = new Interfaz();
+        Esquinas interfaz = new Esquinas();
         int jugadorUnoFichas;
         jugadorUnoFichas = 25;
         int jugadorDosFichas;
@@ -210,9 +203,12 @@ public class Sistema {
         }
     }
 
+    */
+
+    /*
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS PC
     public void jugarContraPC() {
-        Interfaz interfaz = new Interfaz();
+        Esquinas interfaz = new Esquinas();
         int jugadorUnoFichas;
         jugadorUnoFichas = 25;
         int jugadorDosPC;
@@ -303,10 +299,14 @@ public class Sistema {
             interfaz.imprimirEnPantalla("El juego termino en empate", "", 0, 1);
         }
     }
+    */
 
+    /*
     //ESTE METODO SE ENCARGA DE SIMULAR LA IA DE LA PC (NIVEL: 9999 (INVENCIBLE))
     public int inteligenciaArtificial(int fichasDisponibles) {
         fichasDisponibles = libroDeReglas.mejorJugadaPC(this.partida.getTablero(), fichasDisponibles); //METODO ENCARGADO DE TODO LO RELACIONADO CON EL JUEGO DE LA PC, DEVUELVE LAS FICHAS QUE QUEDARON LUEGO DEL MOVIMIENTO
         return fichasDisponibles;
     }
+
+*/
 }
