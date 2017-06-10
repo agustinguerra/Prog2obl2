@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 
 public class VentanaRegistrarJugador extends javax.swing.JFrame {
 
-    private final Sistema objSistema;
+    private final Sistema sistema;
 
     public VentanaRegistrarJugador(Sistema modelo) {
-        objSistema = modelo;
+        sistema = modelo;
         initComponents();
     }
 
@@ -239,8 +239,8 @@ public class VentanaRegistrarJugador extends javax.swing.JFrame {
         if (!verificarCampoVacio(TextFieldNombre.getText(), "Nombre")
                 && !verificarCampoVacio(TextFieldAlias.getText(), "Alias")) {
             if (nombreOk) {
-                for (int i = 0; i < objSistema.getListaJugadores().size(); i++) {
-                    if (TextFieldAlias.getText().equals(objSistema.getListaJugadores().get(i).getAlias())) {
+                for (int i = 0; i < sistema.getListaJugadores().size(); i++) {
+                    if (TextFieldAlias.getText().equals(sistema.getListaJugadores().get(i).getAlias())) {
                         JOptionPane.showMessageDialog(this, "Ya hay un jugador con ese alias", "ERROR", JOptionPane.ERROR_MESSAGE);
                         aliasOk = false;
                     }
@@ -267,7 +267,7 @@ public class VentanaRegistrarJugador extends javax.swing.JFrame {
             nuevoJugador.setNombre(nombre);
             nuevoJugador.setAlias(alias);
             nuevoJugador.setEdad(edad);
-            objSistema.getListaJugadores().add(nuevoJugador);
+            sistema.getListaJugadores().add(nuevoJugador);
             JOptionPane.showMessageDialog(this, "Jugador registrado exitosamente", "Registro de jugador", JOptionPane.PLAIN_MESSAGE);
             TextFieldNombre.setText("");
             TextFieldAlias.setText("");

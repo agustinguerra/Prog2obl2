@@ -9,10 +9,10 @@ import javax.swing.JOptionPane;
 public class VentanaRanking extends javax.swing.JFrame {
 
     
-    private final Sistema objSistema;
+    private final Sistema sistema;
 
     public VentanaRanking(Sistema modelo) {
-        objSistema = modelo;
+        sistema = modelo;
         initComponents();
         this.nombreExcel.setText("");
     }   
@@ -145,7 +145,7 @@ public class VentanaRanking extends javax.swing.JFrame {
             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 String pathElegido = chooser.getCurrentDirectory().toString();
                 String fileElegido = chooser.getSelectedFile().toString();             
-                archExcel.crearExcel(objSistema, nombreExcel.getText(), fileElegido);
+                archExcel.crearExcel(sistema, nombreExcel.getText(), fileElegido);
             } else {
                 JOptionPane.showMessageDialog(this, "No se selecciono un destino correcto. ", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
             }
@@ -180,7 +180,7 @@ public class VentanaRanking extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizar() {
-        Collections.sort(objSistema.getListaJugadores());
-        listaPartidas.setListData(objSistema.getListaJugadores().toArray());
+        Collections.sort(sistema.getListaJugadores());
+        listaPartidas.setListData(sistema.getListaJugadores().toArray());
     } 
 }

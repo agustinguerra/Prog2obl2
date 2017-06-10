@@ -2,13 +2,15 @@ package Interfaz;
 
 import Dominio.Sistema;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.JDialog;
 
-public class VentanaMenuPrincipal extends javax.swing.JFrame {
+public class VentanaMenuPrincipal extends JFrame {
 
-    private final Sistema objSistema;
+    private final Sistema sistema;
 
     public VentanaMenuPrincipal(Sistema modelo) {
-        objSistema = modelo;
+        sistema = modelo;
         initComponents();
     }
 
@@ -22,7 +24,7 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
         BotonRanking = new javax.swing.JButton();
         BotonSalir = new javax.swing.JButton();
         txtTitulo = new javax.swing.JLabel();
-        btnCargaJugadores = new javax.swing.JButton();
+        BotonCargarPartida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,15 +83,15 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
         jPanel1.add(txtTitulo);
         txtTitulo.setBounds(100, 10, 280, 101);
 
-        btnCargaJugadores.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCargaJugadores.setText("Cargar Partida");
-        btnCargaJugadores.addActionListener(new java.awt.event.ActionListener() {
+        BotonCargarPartida.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        BotonCargarPartida.setText("Cargar Partida");
+        BotonCargarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargaJugadoresActionPerformed(evt);
+                BotonCargarPartidaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCargaJugadores);
-        btnCargaJugadores.setBounds(20, 280, 210, 40);
+        jPanel1.add(BotonCargarPartida);
+        BotonCargarPartida.setBounds(20, 280, 210, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,34 +117,48 @@ public class VentanaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void BotonRegistrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarJugadorActionPerformed
-        VentanaRegistrarJugador vJugador = new VentanaRegistrarJugador(objSistema);
-        vJugador.setVisible(true);
+        VentanaRegistrarJugador registroJugador = new VentanaRegistrarJugador(sistema);       
+        final JDialog frame = new JDialog(registroJugador, "Esquinas", true);
+        frame.getContentPane().add(registroJugador.getContentPane());
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_BotonRegistrarJugadorActionPerformed
 
     private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
-        //AGREGAR AQUI VENTANA JUGAR
+        VentanaJuego ventanaJuego = new VentanaJuego(sistema);
+        final JDialog frame = new JDialog(ventanaJuego, "Esquinas", true);
+        frame.getContentPane().add(ventanaJuego.getContentPane());
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_BotonJugarActionPerformed
 
     private void BotonRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRankingActionPerformed
-        VentanaRanking ranking = new VentanaRanking(objSistema);
-        ranking.setVisible(true);
+        VentanaRanking ranking = new VentanaRanking(sistema);
+        final JDialog frame = new JDialog(ranking, "Esquinas", true);
+        frame.getContentPane().add(ranking.getContentPane());
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_BotonRankingActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnCargaJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaJugadoresActionPerformed
-        VentanaCargarPartida cargarPartida = new VentanaCargarPartida(objSistema);
-        cargarPartida.setVisible(true);
-    }//GEN-LAST:event_btnCargaJugadoresActionPerformed
+    private void BotonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCargarPartidaActionPerformed
+        VentanaCargarPartida cargarPartida = new VentanaCargarPartida(sistema);
+        final JDialog frame = new JDialog(cargarPartida, "Esquinas", true);
+        frame.getContentPane().add(cargarPartida.getContentPane());
+        frame.pack();
+        frame.setSize(frame.getPreferredSize().width * 34, frame.getPreferredSize().height * 12);
+        frame.setVisible(true);
+    }//GEN-LAST:event_BotonCargarPartidaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCargarPartida;
     private javax.swing.JButton BotonJugar;
     private javax.swing.JButton BotonRanking;
     private javax.swing.JButton BotonRegistrarJugador;
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JButton btnCargaJugadores;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

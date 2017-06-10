@@ -4,10 +4,10 @@ import Dominio.Sistema;
 
 public class VentanaCargarPartida extends javax.swing.JFrame {
 
-    private final Sistema objSistema;
+    private final Sistema sistema;
    
     public VentanaCargarPartida(Sistema modelo) {
-        objSistema = modelo;
+        sistema = modelo;
         initComponents();     
     }
     
@@ -19,6 +19,8 @@ public class VentanaCargarPartida extends javax.swing.JFrame {
         jLabelTitulo = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         btnCargarPartida = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -72,6 +74,14 @@ public class VentanaCargarPartida extends javax.swing.JFrame {
         jPanel1.add(btnCargarPartida);
         btnCargarPartida.setBounds(220, 370, 230, 40);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("dddddddddddddddddddddddddddddddddddd\ndddddddddddddddddddddddddddddddddddd\ndddddddddddd\ndddddddddddd\ndddddddddddddddddddddddddddddddddddddddddddddddd\n\ndddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\n\n\n\ndddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\n\ndddddddddddddddddddddddddddddddddddddddddddddddd");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 70, 490, 290);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 590, 440);
 
@@ -80,26 +90,23 @@ public class VentanaCargarPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
+        
     }//GEN-LAST:event_formWindowClosing
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        cerrarVentanaJuego();
+        dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPartidaActionPerformed
-       
+       dispose();
     }//GEN-LAST:event_btnCargarPartidaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargarPartida;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-
-    public void cerrarVentanaJuego() {
-        dispose();
-    }
 }
