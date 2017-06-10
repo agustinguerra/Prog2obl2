@@ -31,7 +31,11 @@ public class Sistema {
     public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
     }
-
+    
+    public int cantidadJugadores (){
+        return this.listaJugadores.size();
+    }
+    
     //CONSTRUCTOR CON PARAMETROS DE LA CLASE SISTEMA
     public Sistema(Partida partida, ArrayList<Jugador> listaJugadores) {
         this.partida = partida;

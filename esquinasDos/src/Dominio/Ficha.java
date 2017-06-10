@@ -1,6 +1,12 @@
 package Dominio;
 
-public class Ficha {
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class Ficha implements java.io.Serializable {
 
     //VARIABLES PRIVADAS DE LA CLASE FICHA
     private String color; //CAMBIADO A STRING PORQUE FACILITA MUCHO AL MOMENTO DE IMPRIMIR LA FICHA. AHORRA CODIGO DEL LADO DE LA INTERFAZ.
@@ -49,4 +55,6 @@ public class Ficha {
         this.color = color;
         this.valor = valor;
     }
+
+
 }

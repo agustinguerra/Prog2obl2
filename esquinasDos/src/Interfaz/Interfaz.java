@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Dominio.Ficha;
 import Dominio.Sistema;
 import static Program.Program.pidoDatoIntPositivo;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Interfaz {
     //VARIABLES DE LA CLASE INTERFAZ
     public static final String ANSI_RESET = "\u001B[0m"; // STRING PARA RESETEAR EL COLOR. NO LO PUSE EN FICHA PORQUE: NO ES EL PROPIO COLOR DE LA FICHA, Y SIMPLIFICA TENERLO ACA
     private Sistema sistema;
-
+    private Excel excel;
     //METODOS DE ACCESSO Y MODIFICACION DE LA CLASE INTERFAZ
     public Sistema getSistema() {
         return sistema;
@@ -22,6 +23,7 @@ public class Interfaz {
     //CONSTRUCTOR CON PARAMETROS DE LA CLASE INTERFAZ
     public Interfaz(Sistema sistema) {
         this.sistema = sistema;
+        this.excel = new Excel();
     }
 
     //CONSTRUCTOR VACIO DE LA CLASE INTERFAZ
@@ -123,7 +125,8 @@ public class Interfaz {
             System.out.println("2) JUGAR PARTIDA MANUAL");
             System.out.println("3) JUGAR PARTIDA CONTRA LA PC");
             System.out.println("4) RANKING");
-            System.out.println("5) SALIR");
+            System.out.println("5) CREAR EXCEL RANKING");
+            System.out.println("6) SALIR");
             int menu = pidoDatoIntPositivo("Ingrese la opcion del menu", 0, 6, -1);
             switch (menu) {
                 case 1:
@@ -152,6 +155,15 @@ public class Interfaz {
                     }
                     break;
                 case 5:
+                    this.excel.crearExcel(sistema);
+                    break;
+                case 6:
+//                    System.out.println("prueba de serializacion de una ficha");
+//                    Ficha fich = new Ficha();
+//                    fich.setValor(4);
+//                    Serializador ser = new Serializador();
+//                    ser.serializeFicha(fich);
+//                    ser.deserializeFicha();
                     cond = true;
                     break;
             }
