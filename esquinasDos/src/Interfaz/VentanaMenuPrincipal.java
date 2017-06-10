@@ -149,7 +149,7 @@ public class VentanaMenuPrincipal extends JFrame {
         final JDialog frame = new JDialog(cargarPartida, "Esquinas", true);
         frame.getContentPane().add(cargarPartida.getContentPane());
         frame.pack();
-        frame.setSize(frame.getPreferredSize().width * 34, frame.getPreferredSize().height * 12);
+        //frame.setSize(frame.getPreferredSize().width * 34, frame.getPreferredSize().height * 12);
         frame.setVisible(true);
     }//GEN-LAST:event_BotonCargarPartidaActionPerformed
 

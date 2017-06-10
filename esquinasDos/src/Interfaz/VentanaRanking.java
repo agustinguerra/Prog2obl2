@@ -5,8 +5,9 @@ import Persistencia.ArchivoExcel;
 import java.util.Collections;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
-public class VentanaRanking extends javax.swing.JFrame {
+public class VentanaRanking extends JFrame {
 
     
     private final Sistema sistema;

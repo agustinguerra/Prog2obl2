@@ -1,8 +1,9 @@
 package Interfaz;
 
 import Dominio.Sistema;
+import javax.swing.JFrame;
 
-public class VentanaJuego extends javax.swing.JFrame {
+public class VentanaJuego extends JFrame {
 
     private final Sistema sistema;
 

@@ -3,8 +3,9 @@ package Interfaz;
 import Dominio.Jugador;
 import Dominio.Sistema;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
-public class VentanaRegistrarJugador extends javax.swing.JFrame {
+public class VentanaRegistrarJugador extends JFrame {
 
     private final Sistema sistema;
 
