@@ -1,8 +1,10 @@
 package Dominio;
 
-import Interfaz.Interfaz;
+import Interfaz.Esquinas;
 
 public class Reglas {
+    
+    /*
 
     //VARIABLE PRIVADA DE LA CLASE REGLAS
     private final Condiciones condiciones;
@@ -198,7 +200,7 @@ public class Reglas {
     //METODO QUE DEVUELVE LA CANTIDAD DE FICHAS DISPONIBLES DEL JUGADOR DESPUES DE VERIFICAR LAS ESQUINAS FORMADAS Y DESPUES DE REALIZADA LA JUGADA
     public int seFormoEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles) {
         this.condiciones.chequeadorCondiciones(i, j, tablero);
-        Interfaz interfaz = new Interfaz();
+        Esquinas interfaz = new Esquinas();
         tablero.getFicha(i, j).setValor(1);
         fichasDisponibles = fichasDisponibles - 1;
         interfaz.imprimePosicionCubo(i, j);
@@ -518,7 +520,7 @@ public class Reglas {
         int iAdelante = i + 1;
         int jAtras = j - 1;
         int jAdelante = j + 1;
-        Interfaz interfaz = new Interfaz();
+        Esquinas interfaz = new Esquinas();
         boolean hayFicha = true;
         boolean tengoQueExtenderHaciaArriba = false;
         boolean tengoQueExtenderHaciaAbajo = false;
@@ -1201,4 +1203,6 @@ public class Reglas {
         }
         return fichasDisponibles; //ESTE METODO ME TERMINA DEVOLVIENDO CUANTAS FICHAS QUEDARON
     }
+
+*/
 }
