@@ -3,12 +3,10 @@ package Interfaz;
 import Dominio.Sistema;
 import Persistencia.ArchivoExcel;
 import java.util.Collections;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-public class VentanaRanking extends javax.swing.JFrame implements Observer {
+public class VentanaRanking extends javax.swing.JFrame {
 
     
     private final Sistema objSistema;
@@ -16,16 +14,9 @@ public class VentanaRanking extends javax.swing.JFrame implements Observer {
     public VentanaRanking(Sistema modelo) {
         objSistema = modelo;
         initComponents();
-        objSistema.addObserver(this);
         this.nombreExcel.setText("");
-        actualizar();   
     }   
         
-    @Override
-    public void update(Observable o, Object arg) {
-        actualizar();
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,13 +25,14 @@ public class VentanaRanking extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnGenerar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaPartidas = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nombreExcel = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnVolver1 = new javax.swing.JButton();
+        Refresh = new java.awt.Button();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -75,27 +67,14 @@ public class VentanaRanking extends javax.swing.JFrame implements Observer {
             }
         });
         jPanel1.add(btnGenerar);
-        btnGenerar.setBounds(240, 330, 130, 40);
-
-        btnVolver.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorderPainted(false);
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnVolver);
-        btnVolver.setBounds(380, 330, 90, 40);
+        btnGenerar.setBounds(300, 340, 130, 40);
 
         listaPartidas.setBackground(new java.awt.Color(3, 5, 27));
         listaPartidas.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(listaPartidas);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 150, 450, 160);
+        jScrollPane2.setBounds(20, 150, 450, 180);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Para generar un archivo Excel con el ranking de los jugadores, presione \"Generar\".");
@@ -107,11 +86,34 @@ public class VentanaRanking extends javax.swing.JFrame implements Observer {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(20, 110, 300, 30);
         jPanel1.add(nombreExcel);
-        nombreExcel.setBounds(120, 330, 130, 30);
+        nombreExcel.setBounds(140, 350, 130, 30);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Nombre del archivo");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 340, 100, 14);
+        jLabel4.setBounds(20, 354, 140, 20);
+
+        btnVolver1.setBackground(new java.awt.Color(0, 0, 0));
+        btnVolver1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        btnVolver1.setText("Volver");
+        btnVolver1.setBorderPainted(false);
+        btnVolver1.setContentAreaFilled(false);
+        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver1);
+        btnVolver1.setBounds(410, 340, 90, 40);
+
+        Refresh.setLabel("Refrescar");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Refresh);
+        Refresh.setBounds(400, 120, 70, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,22 +147,27 @@ public class VentanaRanking extends javax.swing.JFrame implements Observer {
                 String fileElegido = chooser.getSelectedFile().toString();             
                 archExcel.crearExcel(objSistema, nombreExcel.getText(), fileElegido);
             } else {
-                JOptionPane.showMessageDialog(null, "No se selecciono un destino correcto.");
+                JOptionPane.showMessageDialog(this, "No se selecciono un destino correcto. ", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No se selecciono el nombre del archivo a guardar.");
+            JOptionPane.showMessageDialog(this, "No se selecciono el nombre del archivo a guardar.", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
         }
-        //dispose(); NO ES NECESARIO HACER ESTE DISPOSE PORQUE SE TE CIERRA LA VENTANA ENTERA Y ESTO ES SOLO PARA CREAR EL EXCEL
+        JOptionPane.showMessageDialog(this, "El Archivo Excel (" + nombreExcel.getText() + ".xls) ha sido generado correctamente. ", "Ranking de Jugadores", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_btnGenerarActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
         dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        actualizar();
+    }//GEN-LAST:event_RefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button Refresh;
     private javax.swing.JButton btnGenerar;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolver1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

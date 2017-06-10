@@ -80,22 +80,11 @@ public class Sistema extends Observable implements Serializable{
         devolver = Character.getNumericValue(x.charAt(1)) - 1;
         return devolver;
     }
-
-    //HACER EL RANKING DE VUELTA COMPLETAMENTE
-    //ESTE METODO RANKEA A LOS JUGADORES POR PARTIDAS GANADAS
-    public void ranking() {
-        Esquinas interfaz = new Esquinas();
-        Collections.sort(this.getListaJugadores());
-        for (int i = 0; i < this.getListaJugadores().size(); i++) {
-           // interfaz.imprimirJugadorEnPantallaParaSeleccion(this.getListaJugadores(), i);
-        }
-    }
     
     //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES
     public void agregarUnJugador(Jugador unJugador) {
         getListaJugadores().add(unJugador);
         setChanged();
-        notifyObservers();
     }
 
     

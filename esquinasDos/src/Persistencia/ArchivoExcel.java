@@ -34,7 +34,6 @@ public class ArchivoExcel {
             System.out.println(filename);
             workbook.write(fileOut);
             fileOut.close();
-            System.out.println("El archivo de excel fue correctamente creado.");
 
         } catch (IOException ex) {
             System.out.println(ex);

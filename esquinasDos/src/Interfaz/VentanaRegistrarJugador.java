@@ -232,18 +232,6 @@ public class VentanaRegistrarJugador extends javax.swing.JFrame {
         return estaVacio;
     }
 
-    public boolean tieneNumeros(String palabra) {
-        boolean tiene = false;
-        for (int i = 0; i < palabra.length() && !tiene; i++) {
-            for (int j = 48; j <= 57 && !tiene; j++) {
-                if (palabra.charAt(i) == j) {
-                    tiene = true;
-                }
-            }
-        }
-        return tiene;
-    }
-
     public boolean verificarRegistro() {
         boolean registroOk = false;
         boolean nombreOk = true;
@@ -279,7 +267,7 @@ public class VentanaRegistrarJugador extends javax.swing.JFrame {
             nuevoJugador.setNombre(nombre);
             nuevoJugador.setAlias(alias);
             nuevoJugador.setEdad(edad);
-            objSistema.agregarUnJugador(nuevoJugador);
+            objSistema.getListaJugadores().add(nuevoJugador);
             JOptionPane.showMessageDialog(this, "Jugador registrado exitosamente", "Registro de jugador", JOptionPane.PLAIN_MESSAGE);
             TextFieldNombre.setText("");
             TextFieldAlias.setText("");
