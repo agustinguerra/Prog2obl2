@@ -9,7 +9,7 @@ public class Esquinas {
         boolean existeSistema = new File("sistema.ser").isFile();
         Sistema sistema;
         if (!existeSistema){
-        System.out.println(existeSistema);
+        //System.out.println(existeSistema);
         sistema = new Sistema();
         Jugador j1 = new Jugador();
         Jugador j2 = new Jugador();

@@ -22,7 +22,7 @@ public class Serializador {
             out.writeObject(sis);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in sistema.ser");
+            //System.out.printf("Serialized data is saved in sistema.ser");
         } catch (IOException i) {
             System.out.println(i);
         }
