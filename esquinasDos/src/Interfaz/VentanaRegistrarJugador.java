@@ -19,18 +19,18 @@ public class VentanaRegistrarJugador extends JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtTitulo = new javax.swing.JLabel();
-        txtTitulo2 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JLabel();
-        txtAlias = new javax.swing.JLabel();
-        txtEdad = new javax.swing.JLabel();
-        TextFieldNombre = new javax.swing.JTextField();
-        TextFieldAlias = new javax.swing.JTextField();
+        labelTitulo = new javax.swing.JLabel();
+        labelSubTitulo = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelAlias = new javax.swing.JLabel();
+        labelEdad = new javax.swing.JLabel();
+        textFieldNombre = new javax.swing.JTextField();
+        textFieldAlias = new javax.swing.JTextField();
         comboBoxEdad = new javax.swing.JComboBox<>();
-        BotonRegistrar = new javax.swing.JButton();
-        BotonVolver = new javax.swing.JButton();
-        txtErrorNombre = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        buttonRegistrar = new javax.swing.JButton();
+        buttonVolver = new javax.swing.JButton();
+        labelErrorNombre = new javax.swing.JLabel();
+        labelInfoEdad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -38,70 +38,70 @@ public class VentanaRegistrarJugador extends JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 163, 154));
         jPanel1.setLayout(null);
 
-        txtTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 33)); // NOI18N
-        txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTitulo.setText("REGISTRO ");
-        jPanel1.add(txtTitulo);
-        txtTitulo.setBounds(6, 6, 440, 54);
+        labelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 33)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("REGISTRO ");
+        jPanel1.add(labelTitulo);
+        labelTitulo.setBounds(6, 6, 440, 54);
 
-        txtTitulo2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        txtTitulo2.setForeground(new java.awt.Color(0, 51, 51));
-        txtTitulo2.setText("Ingrese los datos:");
-        jPanel1.add(txtTitulo2);
-        txtTitulo2.setBounds(18, 78, 188, 33);
+        labelSubTitulo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        labelSubTitulo.setForeground(new java.awt.Color(0, 51, 51));
+        labelSubTitulo.setText("Ingrese los datos:");
+        jPanel1.add(labelSubTitulo);
+        labelSubTitulo.setBounds(18, 78, 188, 33);
 
-        txtNombre.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        txtNombre.setText("Nombre:");
-        jPanel1.add(txtNombre);
-        txtNombre.setBounds(19, 138, 70, 19);
+        labelNombre.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        labelNombre.setText("Nombre:");
+        jPanel1.add(labelNombre);
+        labelNombre.setBounds(19, 138, 70, 19);
 
-        txtAlias.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        txtAlias.setText("Alias:");
-        jPanel1.add(txtAlias);
-        txtAlias.setBounds(20, 190, 50, 19);
+        labelAlias.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        labelAlias.setText("Alias:");
+        jPanel1.add(labelAlias);
+        labelAlias.setBounds(20, 190, 50, 19);
 
-        txtEdad.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        txtEdad.setText("Edad:");
-        jPanel1.add(txtEdad);
-        txtEdad.setBounds(20, 260, 37, 19);
+        labelEdad.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        labelEdad.setText("Edad:");
+        jPanel1.add(labelEdad);
+        labelEdad.setBounds(20, 260, 37, 19);
 
-        TextFieldNombre.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        TextFieldNombre.setSelectionColor(new java.awt.Color(0, 0, 0));
-        TextFieldNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+        textFieldNombre.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        textFieldNombre.setSelectionColor(new java.awt.Color(0, 0, 0));
+        textFieldNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TextFieldNombreMouseClicked(evt);
+                textFieldNombreMouseClicked(evt);
             }
         });
-        TextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+        textFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldNombreActionPerformed(evt);
+                textFieldNombreActionPerformed(evt);
             }
         });
-        TextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        textFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextFieldNombreKeyTyped(evt);
+                textFieldNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldNombre);
-        TextFieldNombre.setBounds(100, 140, 156, 20);
+        jPanel1.add(textFieldNombre);
+        textFieldNombre.setBounds(100, 140, 156, 20);
 
-        TextFieldAlias.addMouseListener(new java.awt.event.MouseAdapter() {
+        textFieldAlias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TextFieldAliasMouseClicked(evt);
+                textFieldAliasMouseClicked(evt);
             }
         });
-        TextFieldAlias.addActionListener(new java.awt.event.ActionListener() {
+        textFieldAlias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldAliasActionPerformed(evt);
+                textFieldAliasActionPerformed(evt);
             }
         });
-        TextFieldAlias.addKeyListener(new java.awt.event.KeyAdapter() {
+        textFieldAlias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextFieldAliasKeyTyped(evt);
+                textFieldAliasKeyTyped(evt);
             }
         });
-        jPanel1.add(TextFieldAlias);
-        TextFieldAlias.setBounds(100, 190, 156, 20);
+        jPanel1.add(textFieldAlias);
+        textFieldAlias.setBounds(100, 190, 156, 20);
 
         comboBoxEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Edad", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", " " }));
         comboBoxEdad.addActionListener(new java.awt.event.ActionListener() {
@@ -112,41 +112,41 @@ public class VentanaRegistrarJugador extends JFrame {
         jPanel1.add(comboBoxEdad);
         comboBoxEdad.setBounds(100, 260, 90, 20);
 
-        BotonRegistrar.setBackground(new java.awt.Color(51, 51, 51));
-        BotonRegistrar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        BotonRegistrar.setText("Registrar");
-        BotonRegistrar.setBorder(null);
-        BotonRegistrar.setContentAreaFilled(false);
-        BotonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        buttonRegistrar.setBackground(new java.awt.Color(51, 51, 51));
+        buttonRegistrar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonRegistrar.setText("Registrar");
+        buttonRegistrar.setBorder(null);
+        buttonRegistrar.setContentAreaFilled(false);
+        buttonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonRegistrarActionPerformed(evt);
+                buttonRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonRegistrar);
-        BotonRegistrar.setBounds(227, 333, 111, 57);
+        jPanel1.add(buttonRegistrar);
+        buttonRegistrar.setBounds(227, 333, 111, 57);
 
-        BotonVolver.setBackground(new java.awt.Color(51, 51, 51));
-        BotonVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        BotonVolver.setText("Volver");
-        BotonVolver.setBorder(null);
-        BotonVolver.setBorderPainted(false);
-        BotonVolver.setContentAreaFilled(false);
-        BotonVolver.addActionListener(new java.awt.event.ActionListener() {
+        buttonVolver.setBackground(new java.awt.Color(51, 51, 51));
+        buttonVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonVolver.setText("Volver");
+        buttonVolver.setBorder(null);
+        buttonVolver.setBorderPainted(false);
+        buttonVolver.setContentAreaFilled(false);
+        buttonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonVolverActionPerformed(evt);
+                buttonVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(BotonVolver);
-        BotonVolver.setBounds(344, 331, 128, 61);
+        jPanel1.add(buttonVolver);
+        buttonVolver.setBounds(344, 331, 128, 61);
 
-        txtErrorNombre.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
-        jPanel1.add(txtErrorNombre);
-        txtErrorNombre.setBounds(281, 134, 185, 28);
+        labelErrorNombre.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
+        jPanel1.add(labelErrorNombre);
+        labelErrorNombre.setBounds(281, 134, 185, 28);
 
-        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        jLabel1.setText("Esquinas esta pensado para personas de 12 años o mas.");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(30, 230, 380, 30);
+        labelInfoEdad.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        labelInfoEdad.setText("Esquinas esta pensado para personas de 12 años o mas.");
+        jPanel1.add(labelInfoEdad);
+        labelInfoEdad.setBounds(30, 230, 380, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,65 +163,65 @@ public class VentanaRegistrarJugador extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreActionPerformed
+    private void textFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldNombreActionPerformed
+    }//GEN-LAST:event_textFieldNombreActionPerformed
 
-    private void TextFieldAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldAliasActionPerformed
+    private void textFieldAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAliasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldAliasActionPerformed
+    }//GEN-LAST:event_textFieldAliasActionPerformed
 
-    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
+    private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
-    }//GEN-LAST:event_BotonVolverActionPerformed
+    }//GEN-LAST:event_buttonVolverActionPerformed
 
-    private void TextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldNombreKeyTyped
+    private void textFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreKeyTyped
         if ('0' <= evt.getKeyChar() && evt.getKeyChar() <= '9') {
-            txtErrorNombre.setText("INGRESE SOLAMENTE LETRAS");
+            labelErrorNombre.setText("INGRESE SOLAMENTE LETRAS");
             evt.consume();
         } else {
-            txtErrorNombre.setText("");
+            labelErrorNombre.setText("");
         }
         if (evt.getKeyChar() == 10) {
             registrarJugador();
         }
-    }//GEN-LAST:event_TextFieldNombreKeyTyped
+    }//GEN-LAST:event_textFieldNombreKeyTyped
 
-    private void TextFieldAliasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldAliasKeyTyped
+    private void textFieldAliasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAliasKeyTyped
         if (evt.getKeyChar() == 10) {
         }
-    }//GEN-LAST:event_TextFieldAliasKeyTyped
+    }//GEN-LAST:event_textFieldAliasKeyTyped
 
-    private void BotonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarActionPerformed
+    private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
         registrarJugador();
-    }//GEN-LAST:event_BotonRegistrarActionPerformed
+    }//GEN-LAST:event_buttonRegistrarActionPerformed
 
-    private void TextFieldAliasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextFieldAliasMouseClicked
-        txtErrorNombre.setText("");
-    }//GEN-LAST:event_TextFieldAliasMouseClicked
+    private void textFieldAliasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldAliasMouseClicked
+        labelErrorNombre.setText("");
+    }//GEN-LAST:event_textFieldAliasMouseClicked
 
-    private void TextFieldNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextFieldNombreMouseClicked
-        txtErrorNombre.setText("");
-    }//GEN-LAST:event_TextFieldNombreMouseClicked
+    private void textFieldNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldNombreMouseClicked
+        labelErrorNombre.setText("");
+    }//GEN-LAST:event_textFieldNombreMouseClicked
 
     private void comboBoxEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEdadActionPerformed
 
     }//GEN-LAST:event_comboBoxEdadActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonRegistrar;
-    private javax.swing.JButton BotonVolver;
-    private javax.swing.JTextField TextFieldAlias;
-    private javax.swing.JTextField TextFieldNombre;
+    private javax.swing.JButton buttonRegistrar;
+    private javax.swing.JButton buttonVolver;
     private javax.swing.JComboBox<String> comboBoxEdad;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel txtAlias;
-    private javax.swing.JLabel txtEdad;
-    private javax.swing.JLabel txtErrorNombre;
-    private javax.swing.JLabel txtNombre;
-    private javax.swing.JLabel txtTitulo;
-    private javax.swing.JLabel txtTitulo2;
+    private javax.swing.JLabel labelAlias;
+    private javax.swing.JLabel labelEdad;
+    private javax.swing.JLabel labelErrorNombre;
+    private javax.swing.JLabel labelInfoEdad;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelSubTitulo;
+    private javax.swing.JLabel labelTitulo;
+    private javax.swing.JTextField textFieldAlias;
+    private javax.swing.JTextField textFieldNombre;
     // End of variables declaration//GEN-END:variables
 
     public boolean verificarCampoVacio(String texto, String nombreCampo) {
@@ -237,11 +237,11 @@ public class VentanaRegistrarJugador extends JFrame {
         boolean registroOk = false;
         boolean nombreOk = true;
         boolean aliasOk = true;
-        if (!verificarCampoVacio(TextFieldNombre.getText(), "Nombre")
-                && !verificarCampoVacio(TextFieldAlias.getText(), "Alias")) {
+        if (!verificarCampoVacio(textFieldNombre.getText(), "Nombre")
+                && !verificarCampoVacio(textFieldAlias.getText(), "Alias")) {
             if (nombreOk) {
                 for (int i = 0; i < sistema.getListaJugadores().size(); i++) {
-                    if (TextFieldAlias.getText().equals(sistema.getListaJugadores().get(i).getAlias())) {
+                    if (textFieldAlias.getText().equals(sistema.getListaJugadores().get(i).getAlias())) {
                         JOptionPane.showMessageDialog(this, "Ya hay un jugador con ese alias", "ERROR", JOptionPane.ERROR_MESSAGE);
                         aliasOk = false;
                     }
@@ -261,17 +261,17 @@ public class VentanaRegistrarJugador extends JFrame {
 
     public void registrarJugador() {
         if (verificarRegistro()) {
-            String nombre = TextFieldNombre.getText();
+            String nombre = textFieldNombre.getText();
             int edad = comboBoxEdad.getSelectedIndex();
-            String alias = TextFieldAlias.getText();
+            String alias = textFieldAlias.getText();
             Jugador nuevoJugador = new Jugador();
             nuevoJugador.setNombre(nombre);
             nuevoJugador.setAlias(alias);
             nuevoJugador.setEdad(edad);
             sistema.getListaJugadores().add(nuevoJugador);
             JOptionPane.showMessageDialog(this, "Jugador registrado exitosamente", "Registro de jugador", JOptionPane.PLAIN_MESSAGE);
-            TextFieldNombre.setText("");
-            TextFieldAlias.setText("");
+            textFieldNombre.setText("");
+            textFieldAlias.setText("");
             comboBoxEdad.setSelectedIndex(0);
 
         }

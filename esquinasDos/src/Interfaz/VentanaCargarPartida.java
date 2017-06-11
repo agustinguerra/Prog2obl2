@@ -18,9 +18,9 @@ public class VentanaCargarPartida extends JFrame {
 
         noHayNombre = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        btnCargarPartida = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
-        jLabelTitulo = new javax.swing.JLabel();
+        buttonCargarPartida = new javax.swing.JButton();
+        buttonVolver = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -38,38 +38,38 @@ public class VentanaCargarPartida extends JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 206, 128));
         jPanel1.setLayout(null);
 
-        btnCargarPartida.setBackground(new java.awt.Color(0, 0, 0));
-        btnCargarPartida.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        btnCargarPartida.setText("Cargar Partida");
-        btnCargarPartida.setBorderPainted(false);
-        btnCargarPartida.setContentAreaFilled(false);
-        btnCargarPartida.addActionListener(new java.awt.event.ActionListener() {
+        buttonCargarPartida.setBackground(new java.awt.Color(0, 0, 0));
+        buttonCargarPartida.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonCargarPartida.setText("Cargar Partida");
+        buttonCargarPartida.setBorderPainted(false);
+        buttonCargarPartida.setContentAreaFilled(false);
+        buttonCargarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarPartidaActionPerformed(evt);
+                buttonCargarPartidaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCargarPartida);
-        btnCargarPartida.setBounds(160, 340, 230, 40);
+        jPanel1.add(buttonCargarPartida);
+        buttonCargarPartida.setBounds(160, 340, 230, 40);
 
-        btnVolver.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        btnVolver.setText("Volver");
-        btnVolver.setBorderPainted(false);
-        btnVolver.setContentAreaFilled(false);
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        buttonVolver.setBackground(new java.awt.Color(0, 0, 0));
+        buttonVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonVolver.setText("Volver");
+        buttonVolver.setBorderPainted(false);
+        buttonVolver.setContentAreaFilled(false);
+        buttonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                buttonVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver);
-        btnVolver.setBounds(370, 340, 130, 40);
+        jPanel1.add(buttonVolver);
+        buttonVolver.setBounds(370, 340, 130, 40);
 
-        jLabelTitulo.setBackground(new java.awt.Color(0, 153, 153));
-        jLabelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
-        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Cargar Partida");
-        jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(-30, 10, 550, 70);
+        labelTitulo.setBackground(new java.awt.Color(0, 153, 153));
+        labelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("Cargar Partida");
+        jPanel1.add(labelTitulo);
+        labelTitulo.setBounds(-30, 10, 550, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,20 +86,20 @@ public class VentanaCargarPartida extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPartidaActionPerformed
+    private void buttonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCargarPartidaActionPerformed
         dispose();
-    }//GEN-LAST:event_btnCargarPartidaActionPerformed
+    }//GEN-LAST:event_buttonCargarPartidaActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_buttonVolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargarPartida;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JButton buttonCargarPartida;
+    private javax.swing.JButton buttonVolver;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JDialog noHayNombre;
     // End of variables declaration//GEN-END:variables
 

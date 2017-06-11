@@ -24,16 +24,16 @@ public class VentanaRanking extends JFrame {
 
         noHayNombre = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnGenerar = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
+        buttonGenerar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaPartidas = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelInfoUno = new javax.swing.JLabel();
+        labelInfoDos = new javax.swing.JLabel();
         nombreExcel = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        btnVolver1 = new javax.swing.JButton();
-        Refresh = new java.awt.Button();
+        labelNombreArchivo = new javax.swing.JLabel();
+        buttonVolver = new javax.swing.JButton();
+        buttonRefresh = new java.awt.Button();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -51,24 +51,24 @@ public class VentanaRanking extends JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 133, 124));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 40)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RANKING");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(110, 0, 290, 70);
+        labelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 40)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("RANKING");
+        jPanel1.add(labelTitulo);
+        labelTitulo.setBounds(110, 0, 290, 70);
 
-        btnGenerar.setBackground(new java.awt.Color(0, 0, 0));
-        btnGenerar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        btnGenerar.setText("Generar");
-        btnGenerar.setBorderPainted(false);
-        btnGenerar.setContentAreaFilled(false);
-        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+        buttonGenerar.setBackground(new java.awt.Color(0, 0, 0));
+        buttonGenerar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonGenerar.setText("Generar");
+        buttonGenerar.setBorderPainted(false);
+        buttonGenerar.setContentAreaFilled(false);
+        buttonGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarActionPerformed(evt);
+                buttonGenerarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerar);
-        btnGenerar.setBounds(300, 340, 130, 40);
+        jPanel1.add(buttonGenerar);
+        buttonGenerar.setBounds(300, 340, 130, 40);
 
         listaPartidas.setBackground(new java.awt.Color(3, 5, 27));
         listaPartidas.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,45 +77,46 @@ public class VentanaRanking extends JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(20, 150, 450, 180);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Para generar un archivo Excel con el ranking de los jugadores, presione \"Generar\".");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 70, 460, 30);
+        labelInfoUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelInfoUno.setText("Para generar un archivo Excel con el ranking de los jugadores, presione \"Generar\".");
+        jPanel1.add(labelInfoUno);
+        labelInfoUno.setBounds(20, 70, 460, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText(" Para volver al menu principal, presione \"Volver\".");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 110, 300, 30);
+        labelInfoDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelInfoDos.setText(" Para volver al menu principal, presione \"Volver\".");
+        jPanel1.add(labelInfoDos);
+        labelInfoDos.setBounds(20, 110, 300, 30);
         jPanel1.add(nombreExcel);
         nombreExcel.setBounds(140, 350, 130, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
-        jLabel4.setText("Nombre del archivo");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 354, 140, 20);
+        labelNombreArchivo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
+        labelNombreArchivo.setText("Nombre del archivo");
+        jPanel1.add(labelNombreArchivo);
+        labelNombreArchivo.setBounds(20, 354, 140, 20);
 
-        btnVolver1.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        btnVolver1.setText("Volver");
-        btnVolver1.setBorderPainted(false);
-        btnVolver1.setContentAreaFilled(false);
-        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
+        buttonVolver.setBackground(new java.awt.Color(0, 0, 0));
+        buttonVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        buttonVolver.setText("Volver");
+        buttonVolver.setBorderPainted(false);
+        buttonVolver.setContentAreaFilled(false);
+        buttonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolver1ActionPerformed(evt);
+                buttonVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver1);
-        btnVolver1.setBounds(410, 340, 90, 40);
+        jPanel1.add(buttonVolver);
+        buttonVolver.setBounds(410, 340, 90, 40);
 
-        Refresh.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
-        Refresh.setLabel("Refrescar");
-        Refresh.addActionListener(new java.awt.event.ActionListener() {
+        buttonRefresh.setActionCommand("Mostrar");
+        buttonRefresh.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        buttonRefresh.setLabel("Mostrar");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefreshActionPerformed(evt);
+                buttonRefreshActionPerformed(evt);
             }
         });
-        jPanel1.add(Refresh);
-        Refresh.setBounds(400, 120, 68, 27);
+        jPanel1.add(buttonRefresh);
+        buttonRefresh.setBounds(400, 120, 63, 27);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,7 +133,7 @@ public class VentanaRanking extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+    private void buttonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerarActionPerformed
         if (this.nombreExcel.getText().equals("") == false) {
             ArchivoExcel archExcel = new ArchivoExcel();
             JFileChooser chooser = new JFileChooser();
@@ -155,27 +156,27 @@ public class VentanaRanking extends JFrame {
             JOptionPane.showMessageDialog(this, "No se selecciono el nombre del archivo a guardar.", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
         }
         JOptionPane.showMessageDialog(this, "El Archivo Excel (" + nombreExcel.getText() + ".xls) ha sido generado correctamente. ", "Ranking de Jugadores", JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_btnGenerarActionPerformed
+    }//GEN-LAST:event_buttonGenerarActionPerformed
 
-    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
+    private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
-    }//GEN-LAST:event_btnVolver1ActionPerformed
+    }//GEN-LAST:event_buttonVolverActionPerformed
 
-    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         actualizar();
-    }//GEN-LAST:event_RefreshActionPerformed
+    }//GEN-LAST:event_buttonRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button Refresh;
-    private javax.swing.JButton btnGenerar;
-    private javax.swing.JButton btnVolver1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton buttonGenerar;
+    private java.awt.Button buttonRefresh;
+    private javax.swing.JButton buttonVolver;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelInfoDos;
+    private javax.swing.JLabel labelInfoUno;
+    private javax.swing.JLabel labelNombreArchivo;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JList listaPartidas;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JTextField nombreExcel;
