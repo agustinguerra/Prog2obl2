@@ -15,9 +15,9 @@ public class VentanaRanking extends JFrame {
     public VentanaRanking(Sistema modelo) {
         sistema = modelo;
         initComponents();
-        this.nombreExcel.setText("");
-    }   
-        
+        this.nombreExcel.setText("");       
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,17 +48,17 @@ public class VentanaRanking extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(255, 133, 124));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 40)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 40)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RANKING");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(140, 0, 220, 70);
+        jLabel1.setBounds(110, 0, 290, 70);
 
         btnGenerar.setBackground(new java.awt.Color(0, 0, 0));
-        btnGenerar.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        btnGenerar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         btnGenerar.setText("Generar");
         btnGenerar.setBorderPainted(false);
         btnGenerar.setContentAreaFilled(false);
@@ -89,13 +89,13 @@ public class VentanaRanking extends JFrame {
         jPanel1.add(nombreExcel);
         nombreExcel.setBounds(140, 350, 130, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
         jLabel4.setText("Nombre del archivo");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(20, 354, 140, 20);
 
         btnVolver1.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        btnVolver1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         btnVolver1.setText("Volver");
         btnVolver1.setBorderPainted(false);
         btnVolver1.setContentAreaFilled(false);
@@ -107,6 +107,7 @@ public class VentanaRanking extends JFrame {
         jPanel1.add(btnVolver1);
         btnVolver1.setBounds(410, 340, 90, 40);
 
+        Refresh.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
         Refresh.setLabel("Refrescar");
         Refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +115,7 @@ public class VentanaRanking extends JFrame {
             }
         });
         jPanel1.add(Refresh);
-        Refresh.setBounds(400, 120, 70, 24);
+        Refresh.setBounds(400, 120, 68, 27);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

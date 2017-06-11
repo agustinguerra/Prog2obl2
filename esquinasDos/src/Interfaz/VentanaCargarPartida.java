@@ -35,11 +35,11 @@ public class VentanaCargarPartida extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(153, 206, 128));
         jPanel1.setLayout(null);
 
         btnCargarPartida.setBackground(new java.awt.Color(0, 0, 0));
-        btnCargarPartida.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        btnCargarPartida.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         btnCargarPartida.setText("Cargar Partida");
         btnCargarPartida.setBorderPainted(false);
         btnCargarPartida.setContentAreaFilled(false);
@@ -52,7 +52,7 @@ public class VentanaCargarPartida extends JFrame {
         btnCargarPartida.setBounds(160, 340, 230, 40);
 
         btnVolver.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        btnVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setBorderPainted(false);
         btnVolver.setContentAreaFilled(false);
@@ -65,7 +65,7 @@ public class VentanaCargarPartida extends JFrame {
         btnVolver.setBounds(370, 340, 130, 40);
 
         jLabelTitulo.setBackground(new java.awt.Color(0, 153, 153));
-        jLabelTitulo.setFont(new java.awt.Font("Showcard Gothic", 1, 36)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Cargar Partida");
         jPanel1.add(jLabelTitulo);

@@ -34,10 +34,10 @@ public class VentanaMenuPrincipal extends JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel1.setBackground(new java.awt.Color(101, 136, 194));
         jPanel1.setLayout(null);
 
-        BotonRegistrarJugador.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        BotonRegistrarJugador.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonRegistrarJugador.setText("Registrar Jugador");
         BotonRegistrarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,7 +47,7 @@ public class VentanaMenuPrincipal extends JFrame {
         jPanel1.add(BotonRegistrarJugador);
         BotonRegistrarJugador.setBounds(20, 210, 210, 40);
 
-        BotonJugar.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        BotonJugar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonJugar.setText("Jugar");
         BotonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +57,7 @@ public class VentanaMenuPrincipal extends JFrame {
         jPanel1.add(BotonJugar);
         BotonJugar.setBounds(130, 130, 210, 41);
 
-        BotonRanking.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        BotonRanking.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonRanking.setText("Ranking");
         BotonRanking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +67,7 @@ public class VentanaMenuPrincipal extends JFrame {
         jPanel1.add(BotonRanking);
         BotonRanking.setBounds(250, 210, 210, 41);
 
-        BotonSalir.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        BotonSalir.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,13 +77,13 @@ public class VentanaMenuPrincipal extends JFrame {
         jPanel1.add(BotonSalir);
         BotonSalir.setBounds(250, 280, 210, 40);
 
-        txtTitulo.setFont(new java.awt.Font("Showcard Gothic", 1, 48)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 48)); // NOI18N
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTitulo.setText("ESQUINAS");
         jPanel1.add(txtTitulo);
-        txtTitulo.setBounds(100, 10, 280, 101);
+        txtTitulo.setBounds(60, 10, 370, 101);
 
-        BotonCargarPartida.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        BotonCargarPartida.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonCargarPartida.setText("Cargar Partida");
         BotonCargarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +119,7 @@ public class VentanaMenuPrincipal extends JFrame {
     private void BotonRegistrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarJugadorActionPerformed
         VentanaRegistrarJugador registroJugador = new VentanaRegistrarJugador(sistema);       
         final JDialog frame = new JDialog(registroJugador, "Esquinas", true);
+        frame.setLocationRelativeTo(null);
         frame.getContentPane().add(registroJugador.getContentPane());
         frame.pack();
         frame.setVisible(true);
@@ -128,6 +129,7 @@ public class VentanaMenuPrincipal extends JFrame {
         VentanaJuego ventanaJuego = new VentanaJuego(sistema);
         final JDialog frame = new JDialog(ventanaJuego, "Esquinas", true);
         frame.getContentPane().add(ventanaJuego.getContentPane());
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_BotonJugarActionPerformed
@@ -135,6 +137,7 @@ public class VentanaMenuPrincipal extends JFrame {
     private void BotonRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRankingActionPerformed
         VentanaRanking ranking = new VentanaRanking(sistema);
         final JDialog frame = new JDialog(ranking, "Esquinas", true);
+        frame.setLocationRelativeTo(null);
         frame.getContentPane().add(ranking.getContentPane());
         frame.pack();
         frame.setVisible(true);
@@ -148,6 +151,7 @@ public class VentanaMenuPrincipal extends JFrame {
         VentanaCargarPartida cargarPartida = new VentanaCargarPartida(sistema);
         final JDialog frame = new JDialog(cargarPartida, "Esquinas", true);
         frame.getContentPane().add(cargarPartida.getContentPane());
+        frame.setLocationRelativeTo(null);
         frame.pack();
         //frame.setSize(frame.getPreferredSize().width * 34, frame.getPreferredSize().height * 12);
         frame.setVisible(true);

@@ -35,35 +35,35 @@ public class VentanaRegistrarJugador extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 163, 154));
         jPanel1.setLayout(null);
 
-        txtTitulo.setFont(new java.awt.Font("Showcard Gothic", 1, 33)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 33)); // NOI18N
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTitulo.setText("REGISTRO DE JUGADOR");
+        txtTitulo.setText("REGISTRO ");
         jPanel1.add(txtTitulo);
-        txtTitulo.setBounds(6, 6, 460, 54);
+        txtTitulo.setBounds(6, 6, 440, 54);
 
-        txtTitulo2.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        txtTitulo2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         txtTitulo2.setForeground(new java.awt.Color(0, 51, 51));
         txtTitulo2.setText("Ingrese los datos:");
         jPanel1.add(txtTitulo2);
-        txtTitulo2.setBounds(18, 78, 205, 32);
+        txtTitulo2.setBounds(18, 78, 188, 33);
 
-        txtNombre.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         txtNombre.setText("Nombre:");
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(30, 138, 59, 19);
+        txtNombre.setBounds(19, 138, 70, 19);
 
-        txtAlias.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        txtAlias.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         txtAlias.setText("Alias:");
         jPanel1.add(txtAlias);
-        txtAlias.setBounds(30, 195, 37, 19);
+        txtAlias.setBounds(20, 190, 50, 19);
 
-        txtEdad.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        txtEdad.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         txtEdad.setText("Edad:");
         jPanel1.add(txtEdad);
-        txtEdad.setBounds(30, 260, 39, 19);
+        txtEdad.setBounds(20, 260, 37, 19);
 
         TextFieldNombre.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         TextFieldNombre.setSelectionColor(new java.awt.Color(0, 0, 0));
@@ -83,7 +83,7 @@ public class VentanaRegistrarJugador extends JFrame {
             }
         });
         jPanel1.add(TextFieldNombre);
-        TextFieldNombre.setBounds(107, 134, 156, 20);
+        TextFieldNombre.setBounds(100, 140, 156, 20);
 
         TextFieldAlias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,7 +101,7 @@ public class VentanaRegistrarJugador extends JFrame {
             }
         });
         jPanel1.add(TextFieldAlias);
-        TextFieldAlias.setBounds(107, 195, 156, 20);
+        TextFieldAlias.setBounds(100, 190, 156, 20);
 
         comboBoxEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Edad", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", " " }));
         comboBoxEdad.addActionListener(new java.awt.event.ActionListener() {
@@ -110,10 +110,10 @@ public class VentanaRegistrarJugador extends JFrame {
             }
         });
         jPanel1.add(comboBoxEdad);
-        comboBoxEdad.setBounds(110, 260, 90, 20);
+        comboBoxEdad.setBounds(100, 260, 90, 20);
 
         BotonRegistrar.setBackground(new java.awt.Color(51, 51, 51));
-        BotonRegistrar.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        BotonRegistrar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonRegistrar.setText("Registrar");
         BotonRegistrar.setBorder(null);
         BotonRegistrar.setContentAreaFilled(false);
@@ -126,7 +126,7 @@ public class VentanaRegistrarJugador extends JFrame {
         BotonRegistrar.setBounds(227, 333, 111, 57);
 
         BotonVolver.setBackground(new java.awt.Color(51, 51, 51));
-        BotonVolver.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        BotonVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         BotonVolver.setText("Volver");
         BotonVolver.setBorder(null);
         BotonVolver.setBorderPainted(false);
@@ -143,7 +143,7 @@ public class VentanaRegistrarJugador extends JFrame {
         jPanel1.add(txtErrorNombre);
         txtErrorNombre.setBounds(281, 134, 185, 28);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel1.setText("Esquinas esta pensado para personas de 12 años o mas.");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(30, 230, 380, 30);

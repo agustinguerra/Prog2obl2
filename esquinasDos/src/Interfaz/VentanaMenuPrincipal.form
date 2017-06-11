@@ -42,7 +42,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
+          <Color blue="c2" green="88" red="65" type="rgb"/>
         </Property>
       </Properties>
 
@@ -53,7 +53,7 @@
         <Component class="javax.swing.JButton" name="BotonRegistrarJugador">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Tempus Sans ITC" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registrar Jugador"/>
           </Properties>
@@ -69,7 +69,7 @@
         <Component class="javax.swing.JButton" name="BotonJugar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Tempus Sans ITC" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Jugar"/>
           </Properties>
@@ -85,7 +85,7 @@
         <Component class="javax.swing.JButton" name="BotonRanking">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Tempus Sans ITC" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ranking"/>
           </Properties>
@@ -101,7 +101,7 @@
         <Component class="javax.swing.JButton" name="BotonSalir">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="14" style="1"/>
+              <Font name="Tempus Sans ITC" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
@@ -117,21 +117,21 @@
         <Component class="javax.swing.JLabel" name="txtTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Showcard Gothic" size="48" style="1"/>
+              <Font name="Old English Text MT" size="48" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="ESQUINAS"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="10" width="280" height="101"/>
+              <AbsoluteConstraints x="60" y="10" width="370" height="101"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="BotonCargarPartida">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="14" style="1"/>
+              <Font name="Tempus Sans ITC" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cargar Partida"/>
           </Properties>
