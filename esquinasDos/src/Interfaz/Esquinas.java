@@ -2,10 +2,15 @@ package Interfaz;
 
 import Dominio.Jugador;
 import Dominio.Sistema;
+import java.io.File;
 
 public class Esquinas {
     public static void main(String[] args) {
-        Sistema sistema = new Sistema();
+        boolean existeSistema = new File("sistema.ser").isFile();
+        Sistema sistema;
+        if (!existeSistema){
+        System.out.println(existeSistema);
+        sistema = new Sistema();
         Jugador j1 = new Jugador();
         Jugador j2 = new Jugador();
         Jugador j3 = new Jugador();
@@ -27,7 +32,11 @@ public class Esquinas {
         sistema.getListaJugadores().add(j1);
         sistema.getListaJugadores().add(j2);
         sistema.getListaJugadores().add(j3);
-        
+        }
+        else {
+            Serializador serializer = new Serializador();
+            sistema = serializer.deserializeSistema();
+        }
         VentanaMenuPrincipal v = new VentanaMenuPrincipal(sistema);
         v.setVisible(true);
     }   

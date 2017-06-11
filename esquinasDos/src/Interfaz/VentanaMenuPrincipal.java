@@ -112,7 +112,8 @@ public class VentanaMenuPrincipal extends JFrame {
     private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?", "AVISO", JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
         if (opcion == JOptionPane.OK_OPTION) {
-            //AGREGAR METODO GUARDAR ACA LUEGO DE QUE AGUS LO TERMINE, Y CREAR METODO GUARDAR
+            Serializador serializer = new Serializador();
+            serializer.serializeSistema(this.sistema);
             dispose();
         }
     }//GEN-LAST:event_buttonSalirActionPerformed

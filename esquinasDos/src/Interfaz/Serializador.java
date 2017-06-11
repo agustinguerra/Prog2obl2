@@ -31,7 +31,7 @@ public class Serializador {
     public Sistema deserializeSistema() {
         Sistema sis = null;
         try {
-            FileInputStream fileIn = new FileInputStream("employee.ser");
+            FileInputStream fileIn = new FileInputStream("sistema.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             sis = (Sistema) in.readObject();
             in.close();
