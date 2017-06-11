@@ -149,7 +149,7 @@ public class VentanaMenuPrincipal extends JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void buttonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCargarPartidaActionPerformed
-        VentanaCargarPartida cargarPartida = new VentanaCargarPartida(sistema);
+        VentanaReanudarPartida cargarPartida = new VentanaReanudarPartida(sistema);
         final JDialog frame = new JDialog(cargarPartida, "Esquinas", true);
         frame.getContentPane().add(cargarPartida.getContentPane());
         frame.setLocationRelativeTo(null);

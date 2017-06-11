@@ -1,6 +1,8 @@
 package Dominio;
 
-public class Partida {
+import java.io.Serializable;
+
+public class Partida implements Serializable {
 
     //VARIABLES PRIVADAS DE LA CLASE TABLERO
     private Jugador jugadorUno;

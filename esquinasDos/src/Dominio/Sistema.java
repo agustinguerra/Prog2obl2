@@ -1,8 +1,6 @@
 package Dominio;
 
-import Interfaz.Esquinas;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Observable;
 import java.io.Serializable;
 

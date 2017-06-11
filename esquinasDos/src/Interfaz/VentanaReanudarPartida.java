@@ -3,11 +3,11 @@ package Interfaz;
 import Dominio.Sistema;
 import javax.swing.JFrame;
 
-public class VentanaCargarPartida extends JFrame {
+public class VentanaReanudarPartida extends JFrame {
 
     private final Sistema sistema;
 
-    public VentanaCargarPartida(Sistema modelo) {
+    public VentanaReanudarPartida(Sistema modelo) {
         sistema = modelo;
         initComponents();
     }   
@@ -67,7 +67,7 @@ public class VentanaCargarPartida extends JFrame {
         labelTitulo.setBackground(new java.awt.Color(0, 153, 153));
         labelTitulo.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("Cargar Partida");
+        labelTitulo.setText("Reanudar Partida");
         jPanel1.add(labelTitulo);
         labelTitulo.setBounds(-30, 10, 550, 70);
 

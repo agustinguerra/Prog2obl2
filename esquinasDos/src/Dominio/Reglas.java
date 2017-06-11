@@ -1,8 +1,8 @@
 package Dominio;
 
-import Interfaz.Esquinas;
+import java.io.Serializable;
 
-public class Reglas {
+public class Reglas implements Serializable{
     
     /*
 

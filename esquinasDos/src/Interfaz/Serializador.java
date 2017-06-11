@@ -1,7 +1,8 @@
 
 package Interfaz;
 
-import Dominio.Ficha;
+
+import Dominio.Sistema;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,34 +15,30 @@ public class Serializador {
     }
 
     
-    public void serializeFicha(Ficha fich) {
+    public void serializeSistema(Sistema sis) {
         try {
-            FileOutputStream fileOut = new FileOutputStream("employee.ser");
+            FileOutputStream fileOut = new FileOutputStream("sistema.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(fich);
+            out.writeObject(sis);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in employee.ser");
+            System.out.printf("Serialized data is saved in sistema.ser");
         } catch (IOException i) {
             System.out.println(i);
         }
     }
 
-    public Ficha deserializeFicha() {
-        Ficha fich = null;
+    public Sistema deserializeSistema() {
+        Sistema sis = null;
         try {
             FileInputStream fileIn = new FileInputStream("employee.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            fich = (Ficha) in.readObject();
+            sis = (Sistema) in.readObject();
             in.close();
-            fileIn.close();
-            System.out.println(fich.getValor());
-            return fich;       
-        } catch (IOException i) {
-            return fich;
-        } catch (ClassNotFoundException c) {
-            System.out.println("Employee class not found");
-            return fich;
+            fileIn.close();           
+            return sis;       
+        } catch (IOException | ClassNotFoundException i) {           
+            return sis;
         }
 
     }

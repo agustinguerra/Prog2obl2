@@ -1,6 +1,8 @@
 package Dominio;
 
-public class Tablero {
+import java.io.Serializable;
+
+public class Tablero implements Serializable {
 
     //VARIABLE PRIVADA DE LA CLASE TABLERO
     private Ficha[][] matriz;

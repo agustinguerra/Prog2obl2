@@ -1,6 +1,8 @@
 package Dominio;
 
-public class Condiciones {
+import java.io.Serializable;
+
+public class Condiciones implements Serializable{
 
     //VARIABLES PRIVADAS DE LA CLASE CONDICIONES
     private boolean condArriba;

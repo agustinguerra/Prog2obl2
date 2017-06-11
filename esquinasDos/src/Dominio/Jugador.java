@@ -1,6 +1,8 @@
 package Dominio;
 
-public class Jugador implements Comparable<Jugador> {
+import java.io.Serializable;
+
+public class Jugador implements Comparable<Jugador>, Serializable {
 
     //VARIABLES PRIVADAS DE LA CLASE JUGADOR
     private String nombre;
