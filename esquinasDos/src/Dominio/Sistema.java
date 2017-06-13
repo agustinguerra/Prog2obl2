@@ -10,7 +10,7 @@ public class Sistema extends Observable implements Serializable{
     private Partida partida;
     private ArrayList<Jugador> listaJugadores;
     private Reglas libroDeReglas;
-
+    private PartidasPausadas partidasSuspendidas;
     //METODOS DE ACCESO Y MODIFICACION DE LA CLASE SISTEMA
     public Partida getPartida() {
         return partida;
@@ -42,6 +42,7 @@ public class Sistema extends Observable implements Serializable{
     public Sistema() {
         this.listaJugadores = new ArrayList<>();
         this.libroDeReglas = new Reglas();
+        this.partidasSuspendidas = new PartidasPausadas();
     }
 
     //ESTE METODO VALIDA LA PRIMER COORDENADA DEL MOVIMIENTO
