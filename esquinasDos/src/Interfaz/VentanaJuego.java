@@ -4,6 +4,8 @@ import Dominio.Sistema;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
 public class VentanaJuego extends JFrame {
     private JButton[][] botones;
@@ -12,6 +14,8 @@ public class VentanaJuego extends JFrame {
     public VentanaJuego(Sistema modelo) {
         sistema = modelo;
         initComponents();
+        textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+        textAreaInfo.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
         jPanel1.setLayout(null);
         panelJuego.setLayout(new GridLayout(6, 7));
         letras.setLayout(new GridLayout (6,1));
@@ -47,6 +51,8 @@ public class VentanaJuego extends JFrame {
             for (int j = 1; j <= 6; j++) {
                 JButton jButton = new JButton();
                 jButton.addActionListener(new ListenerBoton(i, j));
+                jButton.setHorizontalAlignment(JLabel.CENTER);
+                jButton.setText("0");
                 panelJuego.add(jButton);
                 botones[i][j] = jButton;
             }
@@ -63,6 +69,10 @@ public class VentanaJuego extends JFrame {
         panelJuego = new javax.swing.JPanel();
         letras = new javax.swing.JPanel();
         numeros = new javax.swing.JPanel();
+        buttonRendirse = new javax.swing.JButton();
+        textAreaInfo = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        buttonGuardar = new javax.swing.JButton();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -124,28 +134,67 @@ public class VentanaJuego extends JFrame {
         jPanel1.add(numeros);
         numeros.setBounds(60, 20, 300, 30);
 
+        buttonRendirse.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
+        buttonRendirse.setText("Rendirse");
+        buttonRendirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRendirseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonRendirse);
+        buttonRendirse.setBounds(230, 380, 120, 33);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        textAreaInfo.setViewportView(jTextArea1);
+
+        jPanel1.add(textAreaInfo);
+        textAreaInfo.setBounds(420, 20, 350, 410);
+
+        buttonGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
+        buttonGuardar.setText("Guardar");
+        buttonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonGuardar);
+        buttonGuardar.setBounds(80, 380, 120, 33);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(519, 425));
+        setSize(new java.awt.Dimension(812, 507));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
+        //if (sistema.getPartidasPausadas().)
+    }//GEN-LAST:event_buttonGuardarActionPerformed
+
+    private void buttonRendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRendirseActionPerformed
+        // ACA VA EL TEMA DE RENDIRSE
+    }//GEN-LAST:event_buttonRendirseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonGuardar;
+    private javax.swing.JButton buttonRendirse;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JPanel numeros;
     private javax.swing.JPanel panelJuego;
+    private javax.swing.JScrollPane textAreaInfo;
     // End of variables declaration//GEN-END:variables
 
     private class ListenerBoton implements ActionListener {

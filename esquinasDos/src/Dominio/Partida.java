@@ -8,6 +8,7 @@ public class Partida implements Serializable {
     private Jugador jugadorUno;
     private Jugador jugadorDos;
     private Tablero tablero;
+    private String fechaCreada;
 
     //METODOS DE ACCESO Y MODIFICACION DE LA CLASE TABLERO
     public Jugador getJugadorUno() {

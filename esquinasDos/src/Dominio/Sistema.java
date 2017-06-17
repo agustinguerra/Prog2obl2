@@ -11,6 +11,10 @@ public class Sistema extends Observable implements Serializable{
     private ArrayList<Jugador> listaJugadores;
     private Reglas libroDeReglas;
     private PartidasPausadas partidasSuspendidas;
+
+    public PartidasPausadas getPartidasSuspendidas() {
+        return partidasSuspendidas;
+    }
     //METODOS DE ACCESO Y MODIFICACION DE LA CLASE SISTEMA
     public Partida getPartida() {
         return partida;
