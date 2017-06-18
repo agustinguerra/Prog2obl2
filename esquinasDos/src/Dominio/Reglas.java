@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Reglas implements Serializable{
     
-    /*
-
     //VARIABLE PRIVADA DE LA CLASE REGLAS
     private final Condiciones condiciones;
 
@@ -200,79 +198,65 @@ public class Reglas implements Serializable{
     //METODO QUE DEVUELVE LA CANTIDAD DE FICHAS DISPONIBLES DEL JUGADOR DESPUES DE VERIFICAR LAS ESQUINAS FORMADAS Y DESPUES DE REALIZADA LA JUGADA
     public int seFormoEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles) {
         this.condiciones.chequeadorCondiciones(i, j, tablero);
-        Esquinas interfaz = new Esquinas();
         tablero.getFicha(i, j).setValor(1);
         fichasDisponibles = fichasDisponibles - 1;
-        interfaz.imprimePosicionCubo(i, j);
         tablero.getFicha(i, j).setColor(color);
         if (this.condiciones.isCondInternaDelTablero()) {
             //INTERNO DEL TABLERO
             if (this.condiciones.isCondArriba() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                interfaz.imprimePosicionCubo(i, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondArriba() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                interfaz.imprimePosicionCubo(i, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                interfaz.imprimePosicionCubo(i, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                interfaz.imprimePosicionCubo(i, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                 tablero.getFicha(i + 1, j).setColor(color);
-                interfaz.imprimePosicionCubo(i + 1, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                 tablero.getFicha(i, j + 1).setColor(color);
-                interfaz.imprimePosicionCubo(i, j + 1);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                 tablero.getFicha(i, j - 1).setColor(color);
-                interfaz.imprimePosicionCubo(i, j - 1);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                 tablero.getFicha(i + 1, j).setColor(color);
-                interfaz.imprimePosicionCubo(i + 1, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                 tablero.getFicha(i - 1, j).setColor(color);
-                interfaz.imprimePosicionCubo(i - 1, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalArribaDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                 tablero.getFicha(i, j + 1).setColor(color);
-                interfaz.imprimePosicionCubo(i, j + 1);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalArribaIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                 tablero.getFicha(i, j - 1).setColor(color);
-                interfaz.imprimePosicionCubo(i, j - 1);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                 tablero.getFicha(i - 1, j).setColor(color);
-                interfaz.imprimePosicionCubo(i - 1, j);
                 fichasDisponibles = fichasDisponibles - 1;
             }
 
@@ -284,38 +268,32 @@ public class Reglas implements Serializable{
                         case 0:
                             if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                interfaz.imprimePosicionCubo(i, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                                 tablero.getFicha(i, j + 1).setColor(color);
-                                interfaz.imprimePosicionCubo(i, j + 1);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                                 tablero.getFicha(i + 1, j).setColor(color);
-                                interfaz.imprimePosicionCubo(i + 1, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             break;
                         case 5:
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                interfaz.imprimePosicionCubo(i, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                                 tablero.getFicha(i, j - 1).setColor(color);
-                                interfaz.imprimePosicionCubo(i, j - 1);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                                 tablero.getFicha(i + 1, j).setColor(color);
-                                interfaz.imprimePosicionCubo(i + 1, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             break;
@@ -326,38 +304,32 @@ public class Reglas implements Serializable{
                         case 0:
                             if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                interfaz.imprimePosicionCubo(i, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                                 tablero.getFicha(i - 1, j).setColor(color);
-                                interfaz.imprimePosicionCubo(i - 1, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalArribaDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                                 tablero.getFicha(i, j + 1).setColor(color);
-                                interfaz.imprimePosicionCubo(i, j + 1);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             break;
                         case 5:
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                interfaz.imprimePosicionCubo(i, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalArribaIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                                 tablero.getFicha(i, j - 1).setColor(color);
-                                interfaz.imprimePosicionCubo(i, j - 1);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                                 tablero.getFicha(i - 1, j).setColor(color);
-                                interfaz.imprimePosicionCubo(i - 1, j);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             break;
@@ -368,36 +340,30 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaUno()) {
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                     tablero.getFicha(i, j - 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j - 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                     tablero.getFicha(i + 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i + 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                     tablero.getFicha(i + 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i + 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                     tablero.getFicha(i, j + 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j + 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
 
@@ -405,108 +371,90 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaDos()) {
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                     tablero.getFicha(i, j - 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j - 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                     tablero.getFicha(i - 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i - 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                     tablero.getFicha(i - 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i - 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                     tablero.getFicha(i, j + 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j + 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
             }
             if (this.condiciones.isCondExternaTres()) {
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                     tablero.getFicha(i - 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i - 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                     tablero.getFicha(i, j + 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j + 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
                     tablero.getFicha(i, j + 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j + 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                     tablero.getFicha(i + 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i + 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
             }
             if (this.condiciones.isCondExternaCuatro()) {
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    interfaz.imprimePosicionCubo(i, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
                     tablero.getFicha(i - 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i - 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                     tablero.getFicha(i, j - 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j - 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
                     tablero.getFicha(i, j - 1).setColor(color);
-                    interfaz.imprimePosicionCubo(i, j - 1);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
                     tablero.getFicha(i + 1, j).setColor(color);
-                    interfaz.imprimePosicionCubo(i + 1, j);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
             }
@@ -520,7 +468,6 @@ public class Reglas implements Serializable{
         int iAdelante = i + 1;
         int jAtras = j - 1;
         int jAdelante = j + 1;
-        Esquinas interfaz = new Esquinas();
         boolean hayFicha = true;
         boolean tengoQueExtenderHaciaArriba = false;
         boolean tengoQueExtenderHaciaAbajo = false;
@@ -542,13 +489,11 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        interfaz.imprimePosicionCubo(x, j);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        interfaz.imprimePosicionCubo(x, j);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
@@ -580,13 +525,11 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        interfaz.imprimePosicionCubo(x, j);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        interfaz.imprimePosicionCubo(x, j);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
@@ -618,13 +561,11 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        interfaz.imprimePosicionCubo(i, x);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        interfaz.imprimePosicionCubo(i, x);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
@@ -656,13 +597,11 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        interfaz.imprimePosicionCubo(i, x);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        interfaz.imprimePosicionCubo(i, x);
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
@@ -1203,6 +1142,4 @@ public class Reglas implements Serializable{
         }
         return fichasDisponibles; //ESTE METODO ME TERMINA DEVOLVIENDO CUANTAS FICHAS QUEDARON
     }
-
-*/
 }
