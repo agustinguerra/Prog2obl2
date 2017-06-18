@@ -79,7 +79,11 @@ public class VentanaJuego extends JFrame {
         
         cond = false;
         
-        turnoDe = 1;
+        if (turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
+            turnoDe = 1;
+        } else {
+            turnoDe = 2;
+        }
         
         //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS
         turnoDeCheck = true;
@@ -254,7 +258,9 @@ public class VentanaJuego extends JFrame {
         //SI ES VALIDO, CHEQUEAR QUE JUGADOR ES EL TURNO Y PONER LA FICHA EN EL ARRAY DE LA PARTIDA
         //CAMBIAR TURNO DE JUGADOR(VARIABLE DE CLASE)
         //LLAMAR A REFRESCAR MATRIZ
-
+      
+        movimientoValido = false;
+        
         if (turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
             turnoDe = 1;
         } else {
@@ -272,17 +278,23 @@ public class VentanaJuego extends JFrame {
                 movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
             }
         }
-
-        //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
-        if (turnoDe == 1) {
-            jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
-            jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
-            //ACA VA EL METODO DE EXTENDERLAS
-        } else if (turnoDe == 2) {
-            jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
-            jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
-            //ACA VA EL METODO DE EXTENDERLAS
+        
+        if (movimientoValido) {
+            //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
+            if (turnoDe == 1) {
+                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+                //ACA VA EL METODO DE EXTENDERLAS
+            } else if (turnoDe == 2) {
+                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
+                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
+                //ACA VA EL METODO DE EXTENDERLAS
+            }
+            System.out.println("entro y no salio");
         }
+
+        //SI EL MOVIMIENTO FUE VALIDO CAMBIO DE JUGADOR, SINO VUELVO AL MISMO JUGADOR
+        turnoDeCheck = !movimientoValido;
         refrescarMatriz();
        
 
@@ -297,7 +309,7 @@ public class VentanaJuego extends JFrame {
         //SI NO TERMINO, REFRESCO LA MATRIZ EN PANTALLA
 
          if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-            cond = true;
+            dispose();
         } else {
             turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
         }
