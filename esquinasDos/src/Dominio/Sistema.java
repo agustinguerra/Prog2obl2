@@ -83,6 +83,12 @@ public class Sistema extends Observable implements Serializable{
         devolver = Character.getNumericValue(x.charAt(1)) - 1;
         return devolver;
     }
+
+    public void crearPartida(int uno, int dos){
+        this.partida = new Partida();
+        this.partida.setJugadorUno(this.listaJugadores.get(uno));
+        this.partida.setJugadorDos(this.listaJugadores.get(dos));
+    }
     
     //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES
     public void agregarUnJugador(Jugador unJugador) {

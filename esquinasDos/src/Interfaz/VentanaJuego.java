@@ -11,7 +11,20 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 public class VentanaJuego extends JFrame {
     private final JButton[][] botones;
     private final Sistema sistema;
-
+    
+    private int jugadorUnoFichas;
+    private int jugadorDosFichas;
+    
+    private boolean movimientoValido;
+    private boolean esPrimerTurno; 
+    
+    private int turnoDe;
+    
+    private boolean cond;
+    
+    private boolean turnoDeCheck;
+          
+    
     public VentanaJuego(Sistema modelo) {
         sistema = modelo;
         initComponents();
@@ -58,7 +71,18 @@ public class VentanaJuego extends JFrame {
                 botones[i][j] = jButton;
             }
         }
-
+        jugadorUnoFichas = 25;
+        jugadorDosFichas = 25;
+        
+        esPrimerTurno = true;
+        movimientoValido = false;
+        
+        cond = false;
+        
+        turnoDe = 1;
+        
+        //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS
+        turnoDeCheck = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -178,11 +202,20 @@ public class VentanaJuego extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
-        //if (sistema.getPartidasPausadas().)
+        //YA ESTA PRONTO, CUANDO SE TERMINE EL RESTO ACA HAY QUE HACER EL GUARDAR PARTIDA
     }//GEN-LAST:event_buttonGuardarActionPerformed
 
     private void buttonRendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRendirseActionPerformed
-        // ACA VA EL TEMA DE RENDIRSE
+        if (turnoDe == 1) {
+            int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
+            this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
+            JOptionPane.showMessageDialog(this, "El jugador 2 se rindio. Gano el jugador 1. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
+        } else if (turnoDe == 2) {
+            int jGanados = this.sistema.getPartida().getJugadorDos().getJuegosGanados();
+            this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
+            JOptionPane.showMessageDialog(this, "El jugador 1 se rindio. Gano el jugador 2. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
+        }
+        dispose();
     }//GEN-LAST:event_buttonRendirseActionPerformed
 
 
@@ -204,136 +237,109 @@ public class VentanaJuego extends JFrame {
         private int y;
 
         public ListenerBoton(int i, int j) {
-            // en el constructor se almacena la fila y columna que se presionó
+            //En el constructor se almacena la fila y columna que se presionó.
             x = i;
             y = j;
         }
 
-        public int getX(int x) {
-            return x - 1;
-        }
-
-        public int getY(int y) {
-            return y - 1;
-        }
-        
         @Override
         public void actionPerformed(ActionEvent e) {
-            // cuando se presiona un botón, se ejecutará este método
+            //Cuando se presiona un botón, se ejecutará este método.
             clickBoton(x, y);
-            System.out.println(getX(x));
-            System.out.println(getY(y));
         }
     }
 
     private void clickBoton(int fila, int columna) {
-                
+        //CHEQUEAR QUE EL MOVIMINEOT ES VALIDO
+        //SI ES VALIDO, CHEQUEAR QUE JUGADOR ES EL TURNO Y PONER LA FICHA EN EL ARRAY DE LA PARTIDA
+        //CAMBIAR TURNO DE JUGADOR(VARIABLE DE CLASE)
+        //LLAMAR A REFRESCAR MATRIZ
+
+        if (turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
+            turnoDe = 1;
+        } else {
+            turnoDe = 2;
+        }
+
+        int fichaI;
+        fichaI = fila - 1;
+        int fichaJ;
+        fichaJ = columna - 1;
+
+        if (!sistema.libroDeReglas.formaCuadrado(fichaI, fichaJ, this.sistema.getPartida().getTablero())) { //ACA PONGO TODOS LOS METODOS QUE VALIDAN EL MOVIMIENTO, 
+            if (esPrimerTurno == true || sistema.libroDeReglas.tieneAdyacente(fichaI, fichaJ, this.sistema.getPartida().getTablero())) {
+                esPrimerTurno = false; //SI ES EL PRIMER TURNO, NUNCA VA A TENER ADYACENTE, POR ESO ESTE CONTROL ESPECIAL
+                movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
+            }
+        }
+
+        //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
+        if (turnoDe == 1) {
+            jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+            jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+            //ACA VA EL METODO DE EXTENDERLAS
+        } else if (turnoDe == 2) {
+            jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
+            jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
+            //ACA VA EL METODO DE EXTENDERLAS
+        }
+        refrescarMatriz();
+       
+
         // Método a completar!.
         // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
         // fila 1 y columna 1 corresponden a la posición de arriba a la izquierda.
         // Debe indicarse cómo responder al click de ese botón.
     }
-
+        
     private void refrescarMatriz() {
-        for (int i = 1; i <= 6; i++) {
-            for (int j = 1; j <= 6; j++) {
-                //ACA ES DONDE REFRESCAMOS LA MATRIZ UNA VEZ QUE YA TRABAJAMOS EN ESE TURNO Y EVALUAMOS TODAS LAS REGLAS
+        //CHEQUEAR QUE LA PARTIDA NO TERMINO
+        //SI NO TERMINO, REFRESCO LA MATRIZ EN PANTALLA
+
+         if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
+            cond = true;
+        } else {
+            turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
+        }
+        
+        for (int i = 1; i < 7; i++) {
+            for (int j = 1; j < 7; j++) {
+                int valor;
+                String color;
+                valor = this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getValor();
+                botones[i][j].setText(String.valueOf(valor));
+                if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[34m")) {
+                    botones[i][j].setBackground(Color.BLUE);
+                }
+                else if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[31m")) {
+                    botones[i][j].setBackground(Color.RED);
+                }
             }
         }
+        //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
+        
+        
     }
 
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
-    public void jugarEntreJugadores() {
-        int jugadorUnoFichas;
-        jugadorUnoFichas = 25;
-        int jugadorDosFichas;
-        jugadorDosFichas = 25;
-        boolean movimientoValido;
-        boolean esPrimerTurno = true;
-        Partida partida = new Partida();
-
-        int fichaI = 0;
-        int fichaJ = 0;
-
-        //SETEA AMBOS JUGADORES DE LA PARTIDA
-        sistema.getPartida().setJugadorUno(sistema.getListaJugadores().get(0));
-        sistema.getPartida().setJugadorDos(sistema.getListaJugadores().get(1));
-
-        boolean cond;
-        cond = false;
-
-        boolean turnoDe; //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS
-        turnoDe = true;
-
-        int intTurnoDe;
-
-        while (!cond) {
-            movimientoValido = false;
-            if (turnoDe) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
-                intTurnoDe = 1;
-            } else {
-                intTurnoDe = 2;
-            }
-            while (!movimientoValido) {  //SALE DEL WHILE CUANDO SE COMPROBO QUE EL LUGAR DONDE LA PERSONA QUIERE PONER LA FICHA ES VALIDO
-                fichaI = this.getX();
-                fichaJ = this.getY();
-                
-                //ACA ES DONDE SE COMPUREBA SI EL JUGADOR EN CUSTION APRETO EL BOTON ABANDONAR
-                if (this.buttonRendirse.isSelected()) {   //SI SE DA A ABANDONAR, SE TERMINA EL JUEGO Y GANA EL JUGADOR CONTRARIO AL QUE ABANDONO
-                    if (intTurnoDe == 2) {
-                        int jGanados = partida.getJugadorUno().getJuegosGanados();
-                        partida.getJugadorUno().setJuegosGanados(jGanados + 1);
-                    } 
-                    else {
-                        int jGanados = partida.getJugadorDos().getJuegosGanados();
-                        partida.getJugadorDos().setJuegosGanados(jGanados + 1);                       
-                    }
-                    return;
-                }
-                
-                if (!sistema.libroDeReglas.formaCuadrado(fichaI, fichaJ, partida.getTablero())) { //ACA PONGO TODOS LOS METODOS QUE VALIDAN EL MOVIMIENTO, 
-                    if (esPrimerTurno == true || sistema.libroDeReglas.tieneAdyacente(fichaI, fichaJ, partida.getTablero())) {
-                        esPrimerTurno = false; //SI ES EL PRIMER TURNO, NUNCA VA A TENER ADYACENTE, POR ESO ESTE CONTROL ESPECIAL
-                        movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
-                    }
-                }
-            }
-            //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
-            if (intTurnoDe == 1) {
-                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorUnoFichas);
-                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorUnoFichas);
-                //ACA VA EL METODO DE EXTENDERLAS
-            } else {
-                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorDosFichas);
-                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorDosFichas);
-                //ACA VA EL METODO DE EXTENDERLAS
-            }
-            //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
-            if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-                cond = true;
-            } else {
-                turnoDe = !turnoDe; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
-            }
-            //ACA LLAMAMOS AL METODO REFRESCAR MATRIZ UNA VEZ QUE TERMINAMOS EL TURNO.
-            refrescarMatriz();
-        }
-    
-
+    public void jugarEntreJugadores() throws InterruptedException {         
+        
         //UNA VEZ QUE SE TERMINO LA PARTIDA, ACTUALIZO EL RANKING, ES DECIR LE SUMO UNA PARTIDA GANADA AL QUE GANO
         //SI EMPATAN NO LE SUMO NADA A NADIE
-        if (sistema.libroDeReglas.calcularPuntaje(1, partida.getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, partida.getTablero())) {
-            int jGanados = partida.getJugadorUno().getJuegosGanados();
-            partida.getJugadorUno().setJuegosGanados(jGanados + 1);
+        if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
+            int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
+            this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
             
-        } else if (sistema.libroDeReglas.calcularPuntaje(1, partida.getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, partida.getTablero())) {
-            int jGanados = partida.getJugadorDos().getJuegosGanados();
-            partida.getJugadorDos().setJuegosGanados(jGanados + 1);
+        } else if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
+            int jGanados = this.sistema.getPartida().getJugadorDos().getJuegosGanados();
+            this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
         } else {
             //EL JUEGO TERMINO EN EMPATE
         }
     }
+
         
-     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS PC
+    //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS PC
     public void jugarContraPC() {
         int jugadorUnoFichas;
         jugadorUnoFichas = 25;

@@ -129,12 +129,17 @@ public class VentanaMenuPrincipal extends JFrame {
     }//GEN-LAST:event_buttonRegistrarJugadorActionPerformed
 
     private void buttonBotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBotonJugarActionPerformed
-        VentanaJuego ventanaJuego = new VentanaJuego(sistema);
-        final JDialog frame = new JDialog(ventanaJuego, "Esquinas", true);
-        frame.getContentPane().add(ventanaJuego.getContentPane());
+        if(sistema.getListaJugadores().size() > 0){
+        VentanaElegirJugadores elegirJugadores = new VentanaElegirJugadores(sistema);       
+        final JDialog frame = new JDialog(elegirJugadores, "Esquinas", true);
         frame.setLocationRelativeTo(null);
+        frame.getContentPane().add(elegirJugadores.getContentPane());
         frame.pack();
         frame.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "No hay jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonBotonJugarActionPerformed
 
     private void buttonRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRankingActionPerformed
