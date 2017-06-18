@@ -11,6 +11,7 @@ public class VentanaMenuPrincipal extends JFrame {
 
     public VentanaMenuPrincipal(Sistema modelo) {
         sistema = modelo;
+        this.setTitle("Esquinas");
         initComponents();
     }
 

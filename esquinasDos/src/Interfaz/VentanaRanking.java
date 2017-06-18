@@ -155,7 +155,8 @@ public class VentanaRanking extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No se selecciono el nombre del archivo a guardar.", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
         }
-        JOptionPane.showMessageDialog(this, "El Archivo Excel (" + nombreExcel.getText() + ".xls) ha sido generado correctamente. ", "Ranking de Jugadores", JOptionPane.PLAIN_MESSAGE);
+        //ESTO SE VA A HACER UNQUE DE ERROR, ARREGLAR
+        //JOptionPane.showMessageDialog(this, "El Archivo Excel (" + nombreExcel.getText() + ".xls) ha sido generado correctamente. ", "Ranking de Jugadores", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_buttonGenerarActionPerformed
 
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
