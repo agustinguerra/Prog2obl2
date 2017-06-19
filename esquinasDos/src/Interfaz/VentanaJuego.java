@@ -71,22 +71,21 @@ public class VentanaJuego extends JFrame {
                 botones[i][j] = jButton;
             }
         }
-        jugadorUnoFichas = 25;
-        jugadorDosFichas = 25;
+        this.jugadorUnoFichas = 25;
+        this.jugadorDosFichas = 25;
         
-        esPrimerTurno = true;
-        movimientoValido = false;
+        this.esPrimerTurno = true;
+        this.movimientoValido = false;
         
-        cond = false;
-        
-        if (turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
-            turnoDe = 1;
+        this.cond = false;
+        this.turnoDeCheck = true;
+        if (this.turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
+            this.turnoDe = 1;
         } else {
-            turnoDe = 2;
+            this.turnoDe = 2;
         }
         
-        //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS
-        turnoDeCheck = true;
+        //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS     
     }
 
     @SuppressWarnings("unchecked")
@@ -312,7 +311,7 @@ public class VentanaJuego extends JFrame {
          if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
             dispose();
         } else {
-            turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
+            //turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
         }
         
         for (int i = 1; i < 7; i++) {
