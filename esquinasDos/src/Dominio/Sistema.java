@@ -49,7 +49,7 @@ public class Sistema extends Observable implements Serializable{
         this.partidasSuspendidas = new PartidasPausadas();
     }
 
-    //ESTE METODO VALIDA LA PRIMER COORDENADA DEL MOVIMIENTO
+    //ESTE METODO VALIDA LA PRIMER COORDENADA DEL MOVIMIENTO, PUEDE NO SER NECESARIO
     public int primerCoordenadaMovimiento(String x) { //EXTRAIGO LA PRIMER COORDENADA DE LA FICHA A PONER
         int devolver = 0;
         switch (x.charAt(0)) {
@@ -77,7 +77,7 @@ public class Sistema extends Observable implements Serializable{
         return devolver;
     }
 
-    //ESTE METODO VALIDA LA SEGUNDA COORDENADA DEL MOVIMIENTO
+    //ESTE METODO VALIDA LA SEGUNDA COORDENADA DEL MOVIMIENTO, PUEDE NO SER NECESARIO
     public int segundaCoordenadaMovimiento(String x) { //EXTRAIGO LA SEGUNDA COORDENADA DE LA FICHA A PONER
         int devolver;
         devolver = Character.getNumericValue(x.charAt(1)) - 1;

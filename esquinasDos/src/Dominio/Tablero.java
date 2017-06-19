@@ -54,7 +54,7 @@ public class Tablero implements Serializable {
         }
     }
 
-    //LE DAS LA FICHA, Y TE DEVUELVE LA STRING CON EL VALOR YA PINTADO DEL COLOR CORRECTO
+    //LE DAS LA FICHA, Y TE DEVUELVE LA STRING CON EL VALOR YA PINTADO DEL COLOR CORRECTO, PUEDE NO SER NECESARIO
     public String stringFicha(Ficha fich) {
         String fichaParaImprimir = " ";
         if (fich.getValor() > 0) {

@@ -290,11 +290,12 @@ public class VentanaJuego extends JFrame {
                 jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
                 //ACA VA EL METODO DE EXTENDERLAS
             }
-            System.out.println("entro y no salio");
         }
 
         //SI EL MOVIMIENTO FUE VALIDO CAMBIO DE JUGADOR, SINO VUELVO AL MISMO JUGADOR
-        turnoDeCheck = !movimientoValido;
+        if (movimientoValido) {
+            turnoDeCheck = !turnoDeCheck;
+        }
         refrescarMatriz();
        
 
@@ -317,7 +318,6 @@ public class VentanaJuego extends JFrame {
         for (int i = 1; i < 7; i++) {
             for (int j = 1; j < 7; j++) {
                 int valor;
-                String color;
                 valor = this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getValor();
                 botones[i][j].setText(String.valueOf(valor));
                 if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[34m")) {
@@ -334,7 +334,7 @@ public class VentanaJuego extends JFrame {
     }
 
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
-    public void jugarEntreJugadores() throws InterruptedException {         
+    public void jugarEntreJugadores() {         
         
         //UNA VEZ QUE SE TERMINO LA PARTIDA, ACTUALIZO EL RANKING, ES DECIR LE SUMO UNA PARTIDA GANADA AL QUE GANO
         //SI EMPATAN NO LE SUMO NADA A NADIE
