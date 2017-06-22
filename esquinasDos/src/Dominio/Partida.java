@@ -19,6 +19,14 @@ public class Partida implements Serializable {
         this.jugadorUno = jugadorUno;
     }
 
+    public void setFechaCreada(String fechaCreada) {
+        this.fechaCreada = fechaCreada;
+    }
+
+    public String getFechaCreada() {
+        return fechaCreada;
+    }
+
     public Jugador getJugadorDos() {
         return jugadorDos;
     }

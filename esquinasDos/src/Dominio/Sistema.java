@@ -27,6 +27,16 @@ public class Sistema extends Observable implements Serializable{
     public ArrayList<Jugador> getListaJugadores() {
         return listaJugadores;
     }
+    
+    public int getJugadorPorAlias(String al){
+        int ret = 0;
+        for (int i=0;i<this.listaJugadores.size();i++){
+            if(this.listaJugadores.get(i).getAlias().equals(al)){
+                ret=i;
+            }
+        }
+        return ret;
+    }
 
     public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
@@ -84,8 +94,9 @@ public class Sistema extends Observable implements Serializable{
         return devolver;
     }
 
-    public void crearPartida(int uno, int dos){
+    public void crearPartida(int uno, int dos,String fechaCreada){
         this.partida = new Partida();
+        this.partida.setFechaCreada(fechaCreada);
         this.partida.setJugadorUno(this.listaJugadores.get(uno));
         this.partida.setJugadorDos(this.listaJugadores.get(dos));
     }

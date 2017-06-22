@@ -309,6 +309,7 @@ public class VentanaJuego extends JFrame {
         //SI NO TERMINO, REFRESCO LA MATRIZ EN PANTALLA
 
          if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
+            chequearPuntajes();
             dispose();
         } else {
             //turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
@@ -333,10 +334,9 @@ public class VentanaJuego extends JFrame {
     }
 
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
-    public void jugarEntreJugadores() {         
+    public void chequearPuntajes() {         
         
-        //UNA VEZ QUE SE TERMINO LA PARTIDA, ACTUALIZO EL RANKING, ES DECIR LE SUMO UNA PARTIDA GANADA AL QUE GANO
-        //SI EMPATAN NO LE SUMO NADA A NADIE
+        
         if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
             this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
