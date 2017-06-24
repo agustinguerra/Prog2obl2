@@ -205,7 +205,12 @@ public class VentanaJuego extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
-        //YA ESTA PRONTO, CUANDO SE TERMINE EL RESTO ACA HAY QUE HACER EL GUARDAR PARTIDA
+        this.sistema.getPartida().setfJUno(jugadorUnoFichas);
+        this.sistema.getPartida().setfJDos(jugadorDosFichas);
+        this.sistema.getPartida().settDeCheck(turnoDeCheck);
+        this.sistema.getPartidasSuspendidas().agregarPartida(this.sistema.getPartida());
+        JOptionPane.showMessageDialog(this, "La partida se guardo correctamente", "Exito", JOptionPane.PLAIN_MESSAGE);
+        dispose();
     }//GEN-LAST:event_buttonGuardarActionPerformed
 
     private void buttonRendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRendirseActionPerformed
@@ -218,6 +223,7 @@ public class VentanaJuego extends JFrame {
             this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
             JOptionPane.showMessageDialog(this, "El jugador 1 se rindio. Gano el jugador 2. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
         }
+        this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
         dispose();
     }//GEN-LAST:event_buttonRendirseActionPerformed
 
@@ -321,32 +327,69 @@ public class VentanaJuego extends JFrame {
                 valor = this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getValor();
                 botones[i][j].setText(String.valueOf(valor));
                 if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[34m")) {
-                    botones[i][j].setBackground(Color.BLUE);
-                }
-                else if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[31m")) {
-                    botones[i][j].setBackground(Color.RED);
+                    switch (valor) {
+                        case 1:
+                            botones[i][j].setBackground(new Color(172, 203, 255));
+                            break;
+                        case 2:
+                            botones[i][j].setBackground(new Color(146, 187, 255));
+                            break;
+                        case 3:
+                            botones[i][j].setBackground(new Color(120, 170, 255));
+                            break;
+                        case 4:
+                            botones[i][j].setBackground(new Color(100, 158, 255));
+                            break;
+                        case 5:
+                            botones[i][j].setBackground(new Color(65, 136, 255));
+                            break;
+                        default:
+                            break;
+                    }
+                    //botones[i][j].setBackground(Color.decode("0x121E31"));
+                } else if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[31m")) {
+                    switch (valor) {
+                        case 1:
+                            botones[i][j].setBackground(new Color(229, 154, 152));
+                            break;
+                        case 2:
+                            botones[i][j].setBackground(new Color(224, 134, 132));
+                            break;
+                        case 3:
+                            botones[i][j].setBackground(new Color(219, 114, 112));
+                            break;
+                        case 4:
+                            botones[i][j].setBackground(new Color(224, 134, 132));
+                            break;
+                        case 5:
+                            botones[i][j].setBackground(new Color(229, 154, 152));
+                            break;
+                        default:
+                            break;
+
+                        //botones[i][j].setBackground(Color.RED);
+                    }
                 }
             }
+            //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
         }
-        //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
-        
-        
     }
 
     //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
-    public void chequearPuntajes() {         
-        
-        
+    public void chequearPuntajes() {                       
         if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
             this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
-            
+            JOptionPane.showMessageDialog(this, "El jugador 1 ha ganado la partida. Se actualizara el ranking.", "Info", JOptionPane.PLAIN_MESSAGE);    
         } else if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorDos().getJuegosGanados();
             this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
+            JOptionPane.showMessageDialog(this, "El jugador 2 ha ganado la partida. Se actualizara el ranking. ", "Info", JOptionPane.PLAIN_MESSAGE);
         } else {
-            //EL JUEGO TERMINO EN EMPATE
+            JOptionPane.showMessageDialog(this, "El juego ha terminado en empate.", "Info", JOptionPane.PLAIN_MESSAGE);
         }
+        this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada());
+        
     }
 
         

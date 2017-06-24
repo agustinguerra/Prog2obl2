@@ -25,17 +25,17 @@ public class PartidasPausadas implements Serializable {
         }
     }
     
-    public void agregarPartida (Partida partida,String fecha){ //CUANDO SE PAUSA UNA PARTIDA LLAMAMOS A ESTE METODO. SI NO EXISTE LA AGREGA, Y SI EXSITE BORRA LA ANTERIOR Y AGREGA LA QUE VIENE
-        if (this.partidasSuspendidas.containsKey(fecha)){
-            this.partidasSuspendidas.remove(fecha);
-            this.partidasSuspendidas.put(fecha, partida);
+    public void agregarPartida (Partida partida){ //CUANDO SE PAUSA UNA PARTIDA LLAMAMOS A ESTE METODO. SI NO EXISTE LA AGREGA, Y SI EXSITE BORRA LA ANTERIOR Y AGREGA LA QUE VIENE
+        if (this.partidasSuspendidas.containsKey(partida.getFechaCreada())){
+            this.partidasSuspendidas.remove(partida.getFechaCreada());
+            this.partidasSuspendidas.put(partida.getFechaCreada(), partida);
         }
         else {
-            this.partidasSuspendidas.put(fecha, partida);
+            this.partidasSuspendidas.put(partida.getFechaCreada(), partida);
         }
     }
-    
-    public Partida buscarPartida(String fecha){
+
+    public Partida buscarPartida(String fecha) {
         return this.partidasSuspendidas.get(fecha);
     }
 }

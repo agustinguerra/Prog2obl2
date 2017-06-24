@@ -20,6 +20,10 @@ public class Sistema extends Observable implements Serializable{
         return partida;
     }
 
+    public PartidasPausadas getPartidasPausadas(){
+        return partidasSuspendidas;
+    }
+    
     public void setPartida(Partida partida) {
         this.partida = partida;
     }

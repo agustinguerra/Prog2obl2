@@ -9,6 +9,34 @@ public class Partida implements Serializable {
     private Jugador jugadorDos;
     private Tablero tablero;
     private String fechaCreada;
+    private int fJUno; //ESTAS TRES VARIABLES SON UTILIZADAS AL MOMENTO DE GUARDAR LA PARTIDA
+    private int fJDos;
+    private boolean tDeCheck;
+
+    public int getfJUno() {
+        return fJUno;
+    }
+
+    public void setfJUno(int fJUno) {
+        this.fJUno = fJUno;
+    }
+
+    public int getfJDos() {
+        return fJDos;
+    }
+
+    public void setfJDos(int fJDos) {
+        this.fJDos = fJDos;
+    }
+
+    public boolean istDeCheck() {
+        return tDeCheck;
+    }
+
+    public void settDeCheck(boolean tDeCheck) {
+        this.tDeCheck = tDeCheck;
+    }
+    
 
     //METODOS DE ACCESO Y MODIFICACION DE LA CLASE TABLERO
     public Jugador getJugadorUno() {

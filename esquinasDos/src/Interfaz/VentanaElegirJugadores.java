@@ -19,7 +19,6 @@ public class VentanaElegirJugadores extends JFrame {
         for (int i=0;i<this.sistema.getListaJugadores().size();i++){
             this.comboBoxUnoJugadores.addItem(this.sistema.getListaJugadores().get(i).getAlias());
         }
-        System.out.println(this.comboBoxUnoJugadores.getSelectedIndex());
     }
 
     @SuppressWarnings("unchecked")
@@ -138,7 +137,6 @@ public class VentanaElegirJugadores extends JFrame {
     private void buttonJugarEntreJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarEntreJugadoresActionPerformed
         if (this.sistema.getListaJugadores().size() > 1) {
             VentanaJuego ventanaJuego = new VentanaJuego(sistema);
-            //ESTO ES TEMP           
             sistema.crearPartida(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()),new Date().toString());
             final JDialog frame = new JDialog(ventanaJuego, "Esquinas", true);
             frame.getContentPane().add(ventanaJuego.getContentPane());
