@@ -45,6 +45,7 @@ public class Esquinas {
             sistema = serializer.deserializeSistema();
         }
         VentanaMenuPrincipal v = new VentanaMenuPrincipal(sistema);
+        v.setTitle("Esquinas");
         v.setVisible(true);
     }
 }

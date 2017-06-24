@@ -12,6 +12,7 @@ public class Partida implements Serializable {
     private int fJUno; //ESTAS TRES VARIABLES SON UTILIZADAS AL MOMENTO DE GUARDAR LA PARTIDA
     private int fJDos;
     private boolean tDeCheck;
+    private String tipo; //SI ES "NORMAL" la partida es jugador vs jugador si es "PC" la partida es jugador vs PC.
 
     public int getfJUno() {
         return fJUno;
@@ -71,11 +72,20 @@ public class Partida implements Serializable {
         this.tablero = tablero;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     //CONSTRUCTOR CON PARAMETROS DE LA CLASE TABLERO
-    public Partida(Jugador jugadorUno, Jugador jugadorDos, Tablero tablero) {
+    public Partida(Jugador jugadorUno, Jugador jugadorDos, Tablero tablero, String tipo) {
         this.jugadorUno = jugadorUno;
         this.jugadorDos = jugadorDos;
         this.tablero = tablero;
+        this.tipo = tipo;
     }
 
     //CONSTRUCTOR VACIO DE LA CLASE TABLERO

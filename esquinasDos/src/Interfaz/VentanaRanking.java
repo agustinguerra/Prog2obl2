@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 public class VentanaRanking extends JFrame {
-
     
     private final Sistema sistema;
 

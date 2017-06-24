@@ -98,13 +98,21 @@ public class Sistema extends Observable implements Serializable{
         return devolver;
     }
 
-    public void crearPartida(int uno, int dos,String fechaCreada){
+    public void crearPartidaNormal(int uno, int dos, String fechaCreada) {
         this.partida = new Partida();
         this.partida.setFechaCreada(fechaCreada);
+        this.partida.setTipo("NORMAL");
         this.partida.setJugadorUno(this.listaJugadores.get(uno));
         this.partida.setJugadorDos(this.listaJugadores.get(dos));
     }
-    
+
+    public void crearPartidaPC(int uno, String fechaCreada) {
+        this.partida = new Partida();
+        this.partida.setFechaCreada(fechaCreada);
+        this.partida.setTipo("PC");
+        this.partida.setJugadorUno(this.listaJugadores.get(uno));
+    }
+
     //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES
     public void agregarUnJugador(Jugador unJugador) {
         getListaJugadores().add(unJugador);

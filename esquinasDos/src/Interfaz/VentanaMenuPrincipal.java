@@ -11,7 +11,6 @@ public class VentanaMenuPrincipal extends JFrame {
 
     public VentanaMenuPrincipal(Sistema modelo) {
         sistema = modelo;
-        this.setTitle("Esquinas");
         initComponents();
     }
 
@@ -120,7 +119,7 @@ public class VentanaMenuPrincipal extends JFrame {
     }//GEN-LAST:event_buttonSalirActionPerformed
 
     private void buttonRegistrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarJugadorActionPerformed
-        VentanaRegistrarJugador registroJugador = new VentanaRegistrarJugador(sistema);       
+        VentanaRegistrarJugador registroJugador = new VentanaRegistrarJugador(sistema);
         final JDialog frame = new JDialog(registroJugador, "Esquinas", true);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().add(registroJugador.getContentPane());
@@ -129,15 +128,14 @@ public class VentanaMenuPrincipal extends JFrame {
     }//GEN-LAST:event_buttonRegistrarJugadorActionPerformed
 
     private void buttonBotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBotonJugarActionPerformed
-        if(sistema.getListaJugadores().size() > 0){
-        VentanaElegirJugadores elegirJugadores = new VentanaElegirJugadores(sistema);       
-        final JDialog frame = new JDialog(elegirJugadores, "Esquinas", true);
-        frame.setLocationRelativeTo(null);
-        frame.getContentPane().add(elegirJugadores.getContentPane());
-        frame.pack();
-        frame.setVisible(true);
-        }
-        else {
+        if (sistema.getListaJugadores().size() > 0) {
+            VentanaElegirJugadores elegirJugadores = new VentanaElegirJugadores(sistema);
+            final JDialog frame = new JDialog(elegirJugadores, "Esquinas", true);
+            frame.setLocationRelativeTo(null);
+            frame.getContentPane().add(elegirJugadores.getContentPane());
+            frame.pack();
+            frame.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(this, "No hay jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonBotonJugarActionPerformed

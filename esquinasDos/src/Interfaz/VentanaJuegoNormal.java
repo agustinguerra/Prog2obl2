@@ -8,7 +8,7 @@ import java.awt.*;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
-public class VentanaJuego extends JFrame {
+public class VentanaJuegoNormal extends JFrame {
     private final JButton[][] botones;
     private final Sistema sistema;
     
@@ -25,7 +25,7 @@ public class VentanaJuego extends JFrame {
     private boolean turnoDeCheck;
           
     
-    public VentanaJuego(Sistema modelo) {
+    public VentanaJuegoNormal(Sistema modelo) {
         sistema = modelo;
         initComponents();
         textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
@@ -70,6 +70,13 @@ public class VentanaJuego extends JFrame {
                 panelJuego.add(jButton);
                 botones[i][j] = jButton;
             }
+        }
+        
+        //ACA VEMOS SI EL JUEGO ES UN NUEVO JUEGO O ES UN JUEGO REANUDADO
+        if (true) {
+
+        } else {
+
         }
         this.jugadorUnoFichas = 25;
         this.jugadorDosFichas = 25;

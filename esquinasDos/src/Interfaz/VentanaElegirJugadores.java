@@ -12,7 +12,6 @@ public class VentanaElegirJugadores extends JFrame {
     
     public VentanaElegirJugadores(Sistema modelo) {
         sistema = modelo;
-        this.setTitle("Esquinas");
         initComponents();
         this.comboBoxUnoJugadores.removeAllItems();
         this.comboBoxDosJugadores.removeAllItems();
@@ -146,18 +145,16 @@ public class VentanaElegirJugadores extends JFrame {
 
     private void buttonJugarEntreJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarEntreJugadoresActionPerformed
         if (this.sistema.getListaJugadores().size() > 1) {
-            VentanaJuego ventanaJuego = new VentanaJuego(sistema);
-            sistema.crearPartida(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()),new Date().toString());
-            final JDialog frame = new JDialog(ventanaJuego, "Esquinas", true);
-            frame.getContentPane().add(ventanaJuego.getContentPane());
+            VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema);
+            sistema.crearPartidaNormal(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()),new Date().toString());
+            final JDialog frame = new JDialog(ventanaJuegoNormal, "Esquinas", true);
+            frame.getContentPane().add(ventanaJuegoNormal.getContentPane());
             frame.setLocationRelativeTo(null);
             frame.pack();
             frame.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No hay dos o mas jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_buttonJugarEntreJugadoresActionPerformed
 
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
@@ -165,7 +162,25 @@ public class VentanaElegirJugadores extends JFrame {
     }//GEN-LAST:event_buttonVolverActionPerformed
 
     private void buttonJugarContraPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarContraPCActionPerformed
-        
+        int opcion; 
+        opcion = JOptionPane.showConfirmDialog(null, "En este modo de juego solo jugara el jugador elegido en la casilla de Jugador 1. Desea Jugar? " , "CONFIRMAR", JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
+        if (opcion == JOptionPane.OK_OPTION) {
+            //SI EL JUGADOR ELIGE OK PASA A EVALUAR SI HAY MAS DE UN JUGADOR
+            if (this.sistema.getListaJugadores().size() > 0) {
+                //ACA AGREGAMOS EL INICIO DE LA VENTANA DE PC IGUAL QUE EL DE JUGADOR
+                VentanaJuegoPC ventanaJuegoPC = new VentanaJuegoPC(sistema);
+                sistema.crearPartidaPC(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), new Date().toString());
+                final JDialog frame = new JDialog(ventanaJuegoPC, "Esquinas", true);
+                frame.getContentPane().add(ventanaJuegoPC.getContentPane());
+                frame.setLocationRelativeTo(null);
+                frame.pack();
+                frame.setVisible(true);
+            }
+            else {
+                //SINO AVISAMOS
+                JOptionPane.showMessageDialog(this, "No hay jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_buttonJugarContraPCActionPerformed
 
     private void comboBoxUnoJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxUnoJugadoresActionPerformed
