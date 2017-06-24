@@ -86,6 +86,7 @@ public class VentanaReanudarPartida extends JFrame {
         jPanel1.add(labelTitulo);
         labelTitulo.setBounds(-50, 10, 550, 70);
 
+        comboBoxPartidas.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         comboBoxPartidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxPartidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +94,7 @@ public class VentanaReanudarPartida extends JFrame {
             }
         });
         jPanel1.add(comboBoxPartidas);
-        comboBoxPartidas.setBounds(50, 100, 360, 20);
+        comboBoxPartidas.setBounds(50, 100, 360, 21);
 
         textAreaInfoPartida.setColumns(20);
         textAreaInfoPartida.setRows(5);

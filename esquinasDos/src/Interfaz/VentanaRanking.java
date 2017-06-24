@@ -77,12 +77,12 @@ public class VentanaRanking extends JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(20, 150, 450, 180);
 
-        labelInfoUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelInfoUno.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
         labelInfoUno.setText("Para generar un archivo Excel con el ranking de los jugadores, presione \"Generar\".");
         jPanel1.add(labelInfoUno);
         labelInfoUno.setBounds(20, 70, 460, 30);
 
-        labelInfoDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelInfoDos.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
         labelInfoDos.setText(" Para volver al menu principal, presione \"Volver\".");
         jPanel1.add(labelInfoDos);
         labelInfoDos.setBounds(20, 110, 300, 30);

@@ -150,6 +150,9 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="comboBoxEdad">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tempus Sans ITC" size="11" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="91">
                 <StringItem index="0" value="Edad"/>
