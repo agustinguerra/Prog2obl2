@@ -89,7 +89,7 @@ public class VentanaJuegoPC extends JFrame {
         numeros = new javax.swing.JPanel();
         buttonRendirse = new javax.swing.JButton();
         textAreaInfo = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaLogueo = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -159,11 +159,11 @@ public class VentanaJuegoPC extends JFrame {
             }
         });
         jPanel1.add(buttonRendirse);
-        buttonRendirse.setBounds(130, 380, 120, 33);
+        buttonRendirse.setBounds(130, 380, 120, 32);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        textAreaInfo.setViewportView(jTextArea1);
+        textAreaLogueo.setColumns(20);
+        textAreaLogueo.setRows(5);
+        textAreaInfo.setViewportView(textAreaLogueo);
 
         jPanel1.add(textAreaInfo);
         textAreaInfo.setBounds(420, 20, 350, 410);
@@ -187,7 +187,7 @@ public class VentanaJuegoPC extends JFrame {
         if (turnoDe == 1) {
             JOptionPane.showMessageDialog(this, "Te has rendido, La PC gano. Mejor suerte la proxima! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
         }
-        this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
+        //this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
         dispose();
     }//GEN-LAST:event_buttonRendirseActionPerformed
 
@@ -195,12 +195,12 @@ public class VentanaJuegoPC extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRendirse;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JPanel numeros;
     private javax.swing.JPanel panelJuego;
     private javax.swing.JScrollPane textAreaInfo;
+    private javax.swing.JTextArea textAreaLogueo;
     // End of variables declaration//GEN-END:variables
 
     private class ListenerBoton implements ActionListener {
@@ -239,14 +239,14 @@ public class VentanaJuegoPC extends JFrame {
                 }
             }
             if (movimientoValido) {
-                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
-                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
                 turnoDe = 2;
             }
         }
         if (turnoDe == 2) {
             System.out.println("entro pc aca " + turnoDe);
-            jugadorPCFichas = inteligenciaArtificial(jugadorPCFichas, this.sistema.getPartida());
+            jugadorPCFichas = inteligenciaArtificial(jugadorPCFichas, this.sistema.getPartida(),textAreaLogueo);
             movimientoValido = true;
             turnoDe = 1;
         }
@@ -333,9 +333,9 @@ public class VentanaJuegoPC extends JFrame {
     }
 
     //ESTE METODO SE ENCARGA DE SIMULAR LA IA DE LA PC (NIVEL: 9999 (INVENCIBLE))
-    public int inteligenciaArtificial(int fichasDisponibles, Partida partida) {
+    public int inteligenciaArtificial(int fichasDisponibles, Partida partida,JTextArea logueo) {
         //METODO ENCARGADO DE TODO LO RELACIONADO CON EL JUEGO DE LA PC, DEVUELVE LAS FICHAS QUE QUEDARON LUEGO DEL MOVIMIENTO
-        fichasDisponibles = sistema.libroDeReglas.mejorJugadaPC(partida.getTablero(), fichasDisponibles);
+        fichasDisponibles = sistema.libroDeReglas.mejorJugadaPC(partida.getTablero(), fichasDisponibles,logueo);
         return fichasDisponibles;
     }
 }

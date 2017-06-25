@@ -27,6 +27,8 @@ public class VentanaJuegoNormal extends JFrame {
         initComponents();
         textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         textAreaInfo.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
+        textAreaLogueo.setText("Bienvenido al juego!"+"\n");
+        textAreaLogueo.setEditable(false);
         jPanel1.setLayout(null);
         panelJuego.setLayout(new GridLayout(6, 7));
         letras.setLayout(new GridLayout(6, 1));
@@ -108,7 +110,7 @@ public class VentanaJuegoNormal extends JFrame {
         numeros = new javax.swing.JPanel();
         buttonRendirse = new javax.swing.JButton();
         textAreaInfo = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaLogueo = new javax.swing.JTextArea();
         buttonGuardar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
@@ -180,11 +182,11 @@ public class VentanaJuegoNormal extends JFrame {
             }
         });
         jPanel1.add(buttonRendirse);
-        buttonRendirse.setBounds(230, 380, 120, 33);
+        buttonRendirse.setBounds(230, 380, 120, 32);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        textAreaInfo.setViewportView(jTextArea1);
+        textAreaLogueo.setColumns(20);
+        textAreaLogueo.setRows(5);
+        textAreaInfo.setViewportView(textAreaLogueo);
 
         jPanel1.add(textAreaInfo);
         textAreaInfo.setBounds(420, 20, 350, 330);
@@ -197,11 +199,11 @@ public class VentanaJuegoNormal extends JFrame {
             }
         });
         jPanel1.add(buttonGuardar);
-        buttonGuardar.setBounds(80, 380, 120, 33);
+        buttonGuardar.setBounds(80, 380, 120, 32);
 
         jTextField1.setText("jTextField1");
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(560, 410, 59, 20);
+        jTextField1.setBounds(560, 410, 70, 19);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,13 +248,13 @@ public class VentanaJuegoNormal extends JFrame {
     private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRendirse;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JPanel numeros;
     private javax.swing.JPanel panelJuego;
     private javax.swing.JScrollPane textAreaInfo;
+    private javax.swing.JTextArea textAreaLogueo;
     // End of variables declaration//GEN-END:variables
 
     private class ListenerBoton implements ActionListener {
@@ -302,12 +304,12 @@ public class VentanaJuegoNormal extends JFrame {
         if (movimientoValido) {
             //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
             if (turnoDe == 1) {
-                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
-                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas);
+                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
                 //ACA VA EL METODO DE EXTENDERLAS
             } else if (turnoDe == 2) {
-                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
-                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas);
+                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas,textAreaLogueo);
+                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas,textAreaLogueo);
                 //ACA VA EL METODO DE EXTENDERLAS
             }
         }
