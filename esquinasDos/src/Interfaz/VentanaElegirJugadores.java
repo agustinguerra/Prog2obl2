@@ -145,7 +145,7 @@ public class VentanaElegirJugadores extends JFrame {
 
     private void buttonJugarEntreJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarEntreJugadoresActionPerformed
         if (this.sistema.getListaJugadores().size() > 1) {
-            VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema);
+            VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema, 1);
             sistema.crearPartidaNormal(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()),new Date().toString());
             final JDialog frame = new JDialog(ventanaJuegoNormal, "Esquinas", true);
             frame.getContentPane().add(ventanaJuegoNormal.getContentPane());

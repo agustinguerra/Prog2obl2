@@ -63,45 +63,9 @@ public class Sistema extends Observable implements Serializable{
         this.partidasSuspendidas = new PartidasPausadas();
     }
 
-    //ESTE METODO VALIDA LA PRIMER COORDENADA DEL MOVIMIENTO, PUEDE NO SER NECESARIO
-    public int primerCoordenadaMovimiento(String x) { //EXTRAIGO LA PRIMER COORDENADA DE LA FICHA A PONER
-        int devolver = 0;
-        switch (x.charAt(0)) {
-            case 'A':
-                devolver = 0;
-                break;
-            case 'B':
-                devolver = 1;
-                break;
-            case 'C':
-                devolver = 2;
-                break;
-            case 'D':
-                devolver = 3;
-                break;
-            case 'E':
-                devolver = 4;
-                break;
-            case 'F':
-                devolver = 5;
-                break;
-            default:
-                break;
-        }
-        return devolver;
-    }
-
-    //ESTE METODO VALIDA LA SEGUNDA COORDENADA DEL MOVIMIENTO, PUEDE NO SER NECESARIO
-    public int segundaCoordenadaMovimiento(String x) { //EXTRAIGO LA SEGUNDA COORDENADA DE LA FICHA A PONER
-        int devolver;
-        devolver = Character.getNumericValue(x.charAt(1)) - 1;
-        return devolver;
-    }
-
     public void crearPartidaNormal(int uno, int dos, String fechaCreada) {
         this.partida = new Partida();
         this.partida.setFechaCreada(fechaCreada);
-        this.partida.setTipo("NORMAL");
         this.partida.setJugadorUno(this.listaJugadores.get(uno));
         this.partida.setJugadorDos(this.listaJugadores.get(dos));
     }
@@ -109,8 +73,13 @@ public class Sistema extends Observable implements Serializable{
     public void crearPartidaPC(int uno, String fechaCreada) {
         this.partida = new Partida();
         this.partida.setFechaCreada(fechaCreada);
-        this.partida.setTipo("PC");
         this.partida.setJugadorUno(this.listaJugadores.get(uno));
+    }
+    
+    public void reanudarPartida(Partida partidaReanudada, String fechaCreada) {
+        Partida p = new Partida();
+        p.setFechaCreada(fechaCreada);
+        p = partidaReanudada;
     }
 
     //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES

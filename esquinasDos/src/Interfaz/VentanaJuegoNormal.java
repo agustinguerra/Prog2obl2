@@ -19,28 +19,25 @@ public class VentanaJuegoNormal extends JFrame {
     private boolean esPrimerTurno; 
     
     private int turnoDe;
-    
-    private boolean cond;
-    
+        
     private boolean turnoDeCheck;
-          
-    
-    public VentanaJuegoNormal(Sistema modelo) {
+
+    public VentanaJuegoNormal(Sistema modelo, int modo) {
         sistema = modelo;
         initComponents();
         textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         textAreaInfo.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
         jPanel1.setLayout(null);
         panelJuego.setLayout(new GridLayout(6, 7));
-        letras.setLayout(new GridLayout (6,1));
+        letras.setLayout(new GridLayout(6, 1));
         letras.setOpaque(false);
-        letras.add(new JLabel("F"), 5 , 0);
-        letras.add(new JLabel("E"), 1 , 0);
-        letras.add(new JLabel("D"), 1 , 0);
-        letras.add(new JLabel("C"), 1 , 0);
-        letras.add(new JLabel("B"), 1 , 0);
-        letras.add(new JLabel("A"), 1 , 0);
-        numeros.setLayout(new GridLayout(1,7));
+        letras.add(new JLabel("F"), 5, 0);
+        letras.add(new JLabel("E"), 1, 0);
+        letras.add(new JLabel("D"), 1, 0);
+        letras.add(new JLabel("C"), 1, 0);
+        letras.add(new JLabel("B"), 1, 0);
+        letras.add(new JLabel("A"), 1, 0);
+        numeros.setLayout(new GridLayout(1, 7));
         numeros.setOpaque(false);
         JLabel jl1 = new JLabel("1");
         jl1.setHorizontalAlignment(JLabel.CENTER);
@@ -54,12 +51,12 @@ public class VentanaJuegoNormal extends JFrame {
         jl5.setHorizontalAlignment(JLabel.CENTER);
         JLabel jl6 = new JLabel("6");
         jl6.setHorizontalAlignment(JLabel.CENTER);
-        numeros.add(jl6, 5 , 0);
-        numeros.add(jl5, 1 , 0);
-        numeros.add(jl4, 1 , 0);
-        numeros.add(jl3, 1 , 0);
-        numeros.add(jl2, 1 , 0);
-        numeros.add(jl1, 1 , 0);
+        numeros.add(jl6, 5, 0);
+        numeros.add(jl5, 1, 0);
+        numeros.add(jl4, 1, 0);
+        numeros.add(jl3, 1, 0);
+        numeros.add(jl2, 1, 0);
+        numeros.add(jl1, 1, 0);
         botones = new JButton[7][7];
         for (int i = 1; i <= 6; i++) {
             for (int j = 1; j <= 6; j++) {
@@ -71,28 +68,33 @@ public class VentanaJuegoNormal extends JFrame {
                 botones[i][j] = jButton;
             }
         }
-        
-        //ACA VEMOS SI EL JUEGO ES UN NUEVO JUEGO O ES UN JUEGO REANUDADO
-        if (true) {
+        switch (modo) {
+            case 1:
+                this.jugadorUnoFichas = 25;
+                this.jugadorDosFichas = 25;
 
-        } else {
+                this.esPrimerTurno = true;
 
+                this.turnoDeCheck = true;
+                this.turnoDe = 1;
+                break;
+            case 2:     
+                this.jugadorUnoFichas = this.sistema.getPartida().getfJUno();
+                this.jugadorDosFichas = this.sistema.getPartida().getfJDos();
+
+                if (this.jugadorDosFichas == 25 && this.jugadorDosFichas == 25) {
+                    this.esPrimerTurno = true;
+                }
+
+                this.turnoDeCheck = this.sistema.getPartida().istDeCheck();
+                if (this.turnoDeCheck) {
+                    this.turnoDe = 1;
+                } else {
+                    this.turnoDe = 2;
+                }
+                this.refrescarMatriz();
+                break;
         }
-        this.jugadorUnoFichas = 25;
-        this.jugadorDosFichas = 25;
-        
-        this.esPrimerTurno = true;
-        this.movimientoValido = false;
-        
-        this.cond = false;
-        this.turnoDeCheck = true;
-        if (this.turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
-            this.turnoDe = 1;
-        } else {
-            this.turnoDe = 2;
-        }
-        
-        //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE jDOS     
     }
 
     @SuppressWarnings("unchecked")
@@ -353,7 +355,6 @@ public class VentanaJuegoNormal extends JFrame {
                         default:
                             break;
                     }
-                    //botones[i][j].setBackground(Color.decode("0x121E31"));
                 } else if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[31m")) {
                     switch (valor) {
                         case 1:
@@ -373,12 +374,9 @@ public class VentanaJuegoNormal extends JFrame {
                             break;
                         default:
                             break;
-
-                        //botones[i][j].setBackground(Color.RED);
                     }
                 }
             }
-            //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
         }
     }
 
@@ -398,94 +396,4 @@ public class VentanaJuegoNormal extends JFrame {
         this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada());
         
     }
-
-        
-    //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS PC
-    public void jugarContraPC() {
-        int jugadorUnoFichas;
-        jugadorUnoFichas = 25;
-        int jugadorDosPC;
-        jugadorDosPC = 25;
-        boolean movimientoValido;
-        boolean esPrimerTurno = true;
-        Partida partida = new Partida();
-        
-        int fichaI;
-        int fichaJ;
-        
-        //SETEO AL JUGADOR DE LA PARTIDA        
-        sistema.getPartida().setJugadorUno(sistema.getListaJugadores().get(0));
-        
-        boolean cond;
-        cond = false;
-        
-        boolean turnoDe; //BOOLEANO PARA SABER DE QUIEN ES EL TURNO, SI ES TRUE jUNO SI ES FALSE JUEGA PC
-        turnoDe = true;
-        
-        int intTurnoDe;
-        
-        while (!cond) {
-            movimientoValido = false;
-            if (turnoDe) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
-                intTurnoDe = 1;
-            } else {
-                intTurnoDe = 2;
-            }
-            while (!movimientoValido) {  //SALE DEL WHILE CUANDO SE COMPROBO QUE EL LUGAR DONDE LA PERSONA QUIERE PONER LA FICHA ES VALIDO
-                if (intTurnoDe == 1) { //FLUJO NORMAL, JUEGA EL JUGADOR
-                    
-                    if (this.buttonRendirse.isSelected()) {   //SI SE DA A ABANDONAR, SE TERMINA EL JUEGO Y GANA EL JUGADOR PC, PORQUE LA PC NO PUEDE ABANDONAR
-                        return;
-                    }
-                    fichaI = this.getX();
-                    fichaJ = this.getY();
-                    if (!sistema.libroDeReglas.formaCuadrado(fichaI, fichaJ, partida.getTablero())) { //ACA PONGO TODOS LOS METODOS QUE VALIDAN EL MOVIMIENTO, 
-                        if (esPrimerTurno == true || sistema.libroDeReglas.tieneAdyacente(fichaI, fichaJ, partida.getTablero())) {
-                            esPrimerTurno = false; //SI ES EL PRIMER TURNO, NUNCA VA A TENER ADYACENTE, POR ESO ESTE CONTROL ESPECIAL
-                            movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
-                        }
-                    }
-                    if (movimientoValido) { 
-                        //AQUI YA SE A DONDE EL JUGADOR UNO QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
-                        jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorUnoFichas);
-                        jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, partida.getTablero(), intTurnoDe, jugadorUnoFichas);
-                        if ((jugadorUnoFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-                            cond = true;
-                        } else {
-                            turnoDe = !turnoDe; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO A LA PC
-                        }
-                    }
-                } else { //JUEGA LA PC                    
-                    jugadorDosPC = inteligenciaArtificial(jugadorDosPC, partida);
-                    //ESTO VA AL FINAL EL ESE JUEGA LA PC, LUEGO DEL MOVIMIENTO Y TODO
-                    movimientoValido = true; // AL FINAL VALIDO EL MOVIMIENTO DE LA PC PARA SALIR DEL WHILE
-                    if ((jugadorDosPC == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-                        cond = true;
-                    } else {
-                        turnoDe = !turnoDe; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO A LA PC
-                    }
-                }
-            }
-        }
-
-        //UNA VEZ QUE SE TERMINO LA PARTIDA, ACTUALIZO EL RANKING, ES DECIR LE SUMO UNA PARTIDA GANADA AL QUE GANO
-        //SI EMPATAN NO LE SUMO NADA A NADIE
-        if (sistema.libroDeReglas.calcularPuntaje(1, partida.getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, partida.getTablero())) {
-            int jGanados = partida.getJugadorUno().getJuegosGanados();
-            partida.getJugadorUno().setJuegosGanados(jGanados + 1);
-        } 
-        else if (sistema.libroDeReglas.calcularPuntaje(1, partida.getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, partida.getTablero())) {
-            //GANO LA PC
-        } else {
-            //EL JUEGO TERMINO EN EMPATE
-        }
-    }
-    
-    //ESTE METODO SE ENCARGA DE SIMULAR LA IA DE LA PC (NIVEL: 9999 (INVENCIBLE))
-    public int inteligenciaArtificial(int fichasDisponibles, Partida partida) {
-        //METODO ENCARGADO DE TODO LO RELACIONADO CON EL JUEGO DE LA PC, DEVUELVE LAS FICHAS QUE QUEDARON LUEGO DEL MOVIMIENTO
-        fichasDisponibles = sistema.libroDeReglas.mejorJugadaPC(partida.getTablero(), fichasDisponibles); 
-        return fichasDisponibles;
-    }
-
 }

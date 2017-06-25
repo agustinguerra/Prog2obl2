@@ -1,9 +1,12 @@
 package Interfaz;
 
 import Dominio.Sistema;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 
 
@@ -119,7 +122,17 @@ public class VentanaReanudarPartida extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCargarPartidaActionPerformed
-        dispose();
+        if (this.sistema.getListaJugadores().size() > 1) {
+            VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema, 2);
+            sistema.reanudarPartida(this.sistema.getPartidasPausadas().getPartidasSuspendidas().get(this.comboBoxPartidas.getSelectedIndex()), new Date().toString());
+            final JDialog frame = new JDialog(ventanaJuegoNormal, "Esquinas", true);
+            frame.getContentPane().add(ventanaJuegoNormal.getContentPane());
+            frame.setLocationRelativeTo(null);
+            frame.pack();
+            frame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay dos o mas jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonCargarPartidaActionPerformed
 
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
@@ -140,7 +153,6 @@ public class VentanaReanudarPartida extends JFrame {
         if (!fecha.equals("")) {
             this.textAreaInfoPartida.setText(this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorUno().getAlias() +" VS "+ this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorDos().getAlias());
         }
-
     }//GEN-LAST:event_comboBoxPartidasActionPerformed
 
 
