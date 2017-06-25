@@ -1,6 +1,6 @@
 package Interfaz;
 
-import Dominio.Partida;
+import javax.swing.Timer;
 import Dominio.Sistema;
 import javax.swing.*;
 import java.awt.event.*;
@@ -110,6 +110,7 @@ public class VentanaJuegoNormal extends JFrame {
         textAreaInfo = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         buttonGuardar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -186,7 +187,7 @@ public class VentanaJuegoNormal extends JFrame {
         textAreaInfo.setViewportView(jTextArea1);
 
         jPanel1.add(textAreaInfo);
-        textAreaInfo.setBounds(420, 20, 350, 410);
+        textAreaInfo.setBounds(420, 20, 350, 330);
 
         buttonGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
         buttonGuardar.setText("Guardar");
@@ -197,6 +198,10 @@ public class VentanaJuegoNormal extends JFrame {
         });
         jPanel1.add(buttonGuardar);
         buttonGuardar.setBounds(80, 380, 120, 33);
+
+        jTextField1.setText("jTextField1");
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(560, 410, 59, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,6 +247,7 @@ public class VentanaJuegoNormal extends JFrame {
     private javax.swing.JButton buttonRendirse;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JPanel numeros;

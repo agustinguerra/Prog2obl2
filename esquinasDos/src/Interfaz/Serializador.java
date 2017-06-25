@@ -1,6 +1,4 @@
-
 package Interfaz;
-
 
 import Dominio.Sistema;
 import java.io.FileInputStream;
@@ -14,7 +12,6 @@ public class Serializador {
     public Serializador() {
     }
 
-    
     public void serializeSistema(Sistema sis) {
         try {
             FileOutputStream fileOut = new FileOutputStream("sistema.ser");
@@ -35,9 +32,9 @@ public class Serializador {
             ObjectInputStream in = new ObjectInputStream(fileIn);
             sis = (Sistema) in.readObject();
             in.close();
-            fileIn.close();           
-            return sis;       
-        } catch (IOException | ClassNotFoundException i) {           
+            fileIn.close();
+            return sis;
+        } catch (IOException | ClassNotFoundException i) {
             return sis;
         }
 

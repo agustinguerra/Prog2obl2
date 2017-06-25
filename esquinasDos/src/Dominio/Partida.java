@@ -12,6 +12,7 @@ public class Partida implements Serializable {
     private int fJUno; //ESTAS TRES VARIABLES SON UTILIZADAS AL MOMENTO DE GUARDAR LA PARTIDA
     private int fJDos;
     private boolean tDeCheck;
+    private int timer;
 
     public int getfJUno() {
         return fJUno;
@@ -36,7 +37,6 @@ public class Partida implements Serializable {
     public void settDeCheck(boolean tDeCheck) {
         this.tDeCheck = tDeCheck;
     }
-    
 
     //METODOS DE ACCESO Y MODIFICACION DE LA CLASE TABLERO
     public Jugador getJugadorUno() {
@@ -70,12 +70,21 @@ public class Partida implements Serializable {
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
-    
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+
     //CONSTRUCTOR CON PARAMETROS DE LA CLASE TABLERO
-    public Partida(Jugador jugadorUno, Jugador jugadorDos, Tablero tablero) {
+    public Partida(Jugador jugadorUno, Jugador jugadorDos, Tablero tablero, int timer) {
         this.jugadorUno = jugadorUno;
         this.jugadorDos = jugadorDos;
         this.tablero = tablero;
+        this.timer = timer;
     }
 
     //CONSTRUCTOR VACIO DE LA CLASE TABLERO

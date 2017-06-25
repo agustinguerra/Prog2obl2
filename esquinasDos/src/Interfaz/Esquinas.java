@@ -6,11 +6,6 @@ import java.io.File;
 
 public class Esquinas {
 
-    //AGREGO ESTE CONSTRUCTOR PARA QUE NO SE ROMPA REGLAS MIENTRAS TANTO
-    public Esquinas() {
-
-    }
-
     public static void main(String[] args) {
         boolean existeSistema = new File("sistema.ser").isFile();
         Sistema sistema;

@@ -292,7 +292,6 @@ public class VentanaJuegoPC extends JFrame {
                         default:
                             break;
                     }
-                    //botones[i][j].setBackground(Color.decode("0x121E31"));
                 } else if (this.sistema.getPartida().getTablero().getFicha(i - 1, j - 1).getColor().equals("\u001B[31m")) {
                     switch (valor) {
                         case 1:
@@ -312,12 +311,9 @@ public class VentanaJuegoPC extends JFrame {
                             break;
                         default:
                             break;
-
-                        //botones[i][j].setBackground(Color.RED);
                     }
                 }
             }
-            //CUANTAS FICHAS LE QUEDAN AL JUGADOR?
         }
     }
 

@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 
-
 public class VentanaReanudarPartida extends JFrame {
 
     private final Sistema sistema;
@@ -22,7 +21,7 @@ public class VentanaReanudarPartida extends JFrame {
         Iterator it = this.sistema.getPartidasPausadas().getPartidasSuspendidas().entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
-            this.comboBoxPartidas.addItem(pair.getKey().toString());          
+            this.comboBoxPartidas.addItem(pair.getKey().toString());
             //it.remove(); // avoids a ConcurrentModificationException
         }
     }
@@ -133,6 +132,7 @@ public class VentanaReanudarPartida extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay dos o mas jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        dispose();
     }//GEN-LAST:event_buttonCargarPartidaActionPerformed
 
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
@@ -151,7 +151,7 @@ public class VentanaReanudarPartida extends JFrame {
             //it.remove(); // avoids a ConcurrentModificationException
         }
         if (!fecha.equals("")) {
-            this.textAreaInfoPartida.setText(this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorUno().getAlias() +" VS "+ this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorDos().getAlias());
+            this.textAreaInfoPartida.setText(this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorUno().getAlias() + " VS " + this.sistema.getPartidasPausadas().buscarPartida(fecha).getJugadorDos().getAlias());
         }
     }//GEN-LAST:event_comboBoxPartidasActionPerformed
 
@@ -166,5 +166,4 @@ public class VentanaReanudarPartida extends JFrame {
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JTextArea textAreaInfoPartida;
     // End of variables declaration//GEN-END:variables
-
 }
