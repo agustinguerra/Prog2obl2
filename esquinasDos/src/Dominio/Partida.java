@@ -14,6 +14,7 @@ public class Partida implements Serializable {
     private boolean tDeCheck;
     private int timer;
 
+    //METODOS DE ACCESO Y MODIFICACION DE LA CLASE TABLERO
     public int getfJUno() {
         return fJUno;
     }
@@ -38,7 +39,6 @@ public class Partida implements Serializable {
         this.tDeCheck = tDeCheck;
     }
 
-    //METODOS DE ACCESO Y MODIFICACION DE LA CLASE TABLERO
     public Jugador getJugadorUno() {
         return jugadorUno;
     }
@@ -84,7 +84,7 @@ public class Partida implements Serializable {
         this.jugadorUno = jugadorUno;
         this.jugadorDos = jugadorDos;
         this.tablero = tablero;
-        this.timer = timer;
+        this.timer = 3;
     }
 
     //CONSTRUCTOR VACIO DE LA CLASE TABLERO

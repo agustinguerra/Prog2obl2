@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 
 public class VentanaRegistrarJugador extends JFrame {
 
+    //VARIABLE PRIVADA DE LA CLASE VENTANAREGISTRARJUGADOR
     private final Sistema sistema;
 
+    //CONSTRUCTOR DE LA CLASE VENTANAREGISTRARJUGADOR
     public VentanaRegistrarJugador(Sistema modelo) {
         sistema = modelo;
         initComponents();
@@ -147,7 +149,7 @@ public class VentanaRegistrarJugador extends JFrame {
         labelInfoEdad.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         labelInfoEdad.setText("Esquinas esta pensado para personas de 12 años o mas.");
         jPanel1.add(labelInfoEdad);
-        labelInfoEdad.setBounds(30, 230, 380, 30);
+        labelInfoEdad.setBounds(20, 230, 380, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,18 +166,22 @@ public class VentanaRegistrarJugador extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //TEXT FIELD DEL NOMBRE
     private void textFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNombreActionPerformed
 
+    //TEXT FIELD DEL ALIAS
     private void textFieldAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAliasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldAliasActionPerformed
 
+    //ESTE BOTON VUELVE HACIA ATRAS
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
     }//GEN-LAST:event_buttonVolverActionPerformed
 
+    //ACA SE MANEJA LO QUE SE INGRESA DENTRO DE TEXT FIELD NOMBRE
     private void textFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNombreKeyTyped
         if ('0' <= evt.getKeyChar() && evt.getKeyChar() <= '9') {
             labelErrorNombre.setText("INGRESE SOLAMENTE LETRAS");
@@ -183,16 +189,13 @@ public class VentanaRegistrarJugador extends JFrame {
         } else {
             labelErrorNombre.setText("");
         }
-        if (evt.getKeyChar() == 10) {
-            registrarJugador();
-        }
     }//GEN-LAST:event_textFieldNombreKeyTyped
 
     private void textFieldAliasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAliasKeyTyped
-        if (evt.getKeyChar() == 10) {
-        }
+
     }//GEN-LAST:event_textFieldAliasKeyTyped
 
+    //ESTE BOTON REGISTRA AL JUGADOR
     private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarActionPerformed
         registrarJugador();
     }//GEN-LAST:event_buttonRegistrarActionPerformed
@@ -225,6 +228,7 @@ public class VentanaRegistrarJugador extends JFrame {
     private javax.swing.JTextField textFieldNombre;
     // End of variables declaration//GEN-END:variables
 
+    //ESTE METODO VERIFICA CAMPO VACIO
     public boolean verificarCampoVacio(String texto, String nombreCampo) {
         boolean estaVacio = false;
         if (texto.isEmpty()) {
@@ -234,6 +238,7 @@ public class VentanaRegistrarJugador extends JFrame {
         return estaVacio;
     }
 
+    //ESTE METODO VALIDA EL REGISTRO
     public boolean verificarRegistro() {
         boolean registroOk = false;
         boolean nombreOk = true;
@@ -260,6 +265,7 @@ public class VentanaRegistrarJugador extends JFrame {
         return registroOk;
     }
 
+    //ESTE METODO REGISTRA AL JUGADOR
     public void registrarJugador() {
         if (verificarRegistro()) {
             String nombre = textFieldNombre.getText();
@@ -274,7 +280,6 @@ public class VentanaRegistrarJugador extends JFrame {
             textFieldNombre.setText("");
             textFieldAlias.setText("");
             comboBoxEdad.setSelectedIndex(0);
-
         }
     }
 }

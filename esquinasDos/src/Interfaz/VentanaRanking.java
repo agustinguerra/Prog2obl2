@@ -8,13 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 public class VentanaRanking extends JFrame {
-    
+
+    //VARIABLE PRIVADA DE LA CLASE VENTANARANKING
     private final Sistema sistema;
 
+    //CONSTRUCTOR DE LA CLASE VENTANARANKING
     public VentanaRanking(Sistema modelo) {
         sistema = modelo;
         initComponents();
-        this.nombreExcel.setText("");       
+        this.nombreExcel.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -132,6 +134,7 @@ public class VentanaRanking extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //ESTE BOTON GENERA EL EXCEL UNA VEZ QUE SE IGNRESA EL NOMBRE
     private void buttonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerarActionPerformed
         if (this.nombreExcel.getText().equals("") == false) {
             ArchivoExcel archExcel = new ArchivoExcel();
@@ -146,7 +149,7 @@ public class VentanaRanking extends JFrame {
             //    
             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 String pathElegido = chooser.getCurrentDirectory().toString();
-                String fileElegido = chooser.getSelectedFile().toString();             
+                String fileElegido = chooser.getSelectedFile().toString();
                 archExcel.crearExcel(sistema, nombreExcel.getText(), fileElegido);
             } else {
                 JOptionPane.showMessageDialog(this, "No se selecciono un destino correcto. ", "Ranking de Jugadores", JOptionPane.ERROR_MESSAGE);
@@ -158,14 +161,15 @@ public class VentanaRanking extends JFrame {
         //JOptionPane.showMessageDialog(this, "El Archivo Excel (" + nombreExcel.getText() + ".xls) ha sido generado correctamente. ", "Ranking de Jugadores", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_buttonGenerarActionPerformed
 
+    //ESTE BOTON VUELVE
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
     }//GEN-LAST:event_buttonVolverActionPerformed
 
+    //ESTE BOTON ACTUALIZA EL RANKING EN LA VENTANA MISMO
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         actualizar();
     }//GEN-LAST:event_buttonRefreshActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonGenerar;
@@ -182,8 +186,9 @@ public class VentanaRanking extends JFrame {
     private javax.swing.JTextField nombreExcel;
     // End of variables declaration//GEN-END:variables
 
+    //ESTE METODO ACTUALIZA LA LISTA DE PARTIDAS Y LAS ORDENA POR JUGADOR CON MAS PARTIDAS GANADAS
     public void actualizar() {
         Collections.sort(sistema.getListaJugadores());
         listaPartidas.setListData(sistema.getListaJugadores().toArray());
-    } 
+    }
 }

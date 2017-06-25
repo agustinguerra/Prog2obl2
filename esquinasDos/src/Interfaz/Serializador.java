@@ -9,9 +9,12 @@ import java.io.ObjectOutputStream;
 
 public class Serializador {
 
+    //CONSTRUCTOR SIN PARAMETROS DE LA CLAZE SERIALIZADOR
     public Serializador() {
+
     }
 
+    //ESTE METODO SERIALIZA
     public void serializeSistema(Sistema sis) {
         try {
             FileOutputStream fileOut = new FileOutputStream("sistema.ser");
@@ -19,12 +22,13 @@ public class Serializador {
             out.writeObject(sis);
             out.close();
             fileOut.close();
-            //System.out.printf("Serialized data is saved in sistema.ser");
+            //LOS DATOS SON GUARDADOS EN SISTEMA.SER
         } catch (IOException i) {
             System.out.println(i);
         }
     }
 
+    //ESTE METODO DESERIALIZA
     public Sistema deserializeSistema() {
         Sistema sis = null;
         try {
@@ -37,6 +41,5 @@ public class Serializador {
         } catch (IOException | ClassNotFoundException i) {
             return sis;
         }
-
     }
 }

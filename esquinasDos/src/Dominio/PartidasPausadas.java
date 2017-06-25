@@ -6,37 +6,38 @@ import java.util.Map;
 
 public class PartidasPausadas implements Serializable {
 
+    //VARIABLE PRIVADA MAPA DE LA CLASE PARTIDAS PAUSADAS
     private Map<String, Partida> partidasSuspendidas = new HashMap<>();
 
+    //METODO GET PARA OBTENER EL MAPA DE PARTIDAS SUSPENDIDAS
     public Map<String, Partida> getPartidasSuspendidas() {
         return partidasSuspendidas;
     }
 
+    //CONSTRUCTOR SIN PARAMETROS DE LA CLASE PARTIDAPAUSADAS
     public PartidasPausadas() {
-        this.partidasSuspendidas = new HashMap<String,Partida>();
+        this.partidasSuspendidas = new HashMap<String, Partida>();
     }
-    //LO UNICO HECHO DE ESTO, ES ESTA CLASE Y LA INSTANCIACION AL PRINCIPIO CUANDO SE CREA SISTEMA Y AHORA LA ACCION DEL BOTON
-    //FALTA QUE CUANDO CREES LA PARTIDA SE SETEE LA FECHA DE CREACION
-    //FALTA QUE CUANDO SE TERMINE LA PARTIDA CHEQUEAR QUE EXISTE PARA BORRARLA DEL LISTADO
-    
-    public void seTerminoPartida (String fecha){
-        if (this.partidasSuspendidas.containsKey(fecha)){ //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI EXISTE EN EL MAP PARA VER SI LO TENGO QUE SACAR
+
+    //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI EXISTE EN EL MAP PARA VER SI LO TENGO QUE SACAR
+    public void seTerminoPartida(String fecha) {
+        if (this.partidasSuspendidas.containsKey(fecha)) {
             this.partidasSuspendidas.remove(fecha);
         }
     }
-    
-    public void agregarPartida (Partida partida){ //CUANDO SE PAUSA UNA PARTIDA LLAMAMOS A ESTE METODO. SI NO EXISTE LA AGREGA, Y SI EXSITE BORRA LA ANTERIOR Y AGREGA LA QUE VIENE
-        if (this.partidasSuspendidas.containsKey(partida.getFechaCreada())){
+
+    //CUANDO SE PAUSA UNA PARTIDA LLAMAMOS A ESTE METODO. SI NO EXISTE LA AGREGA, Y SI EXSITE BORRA LA ANTERIOR Y AGREGA LA QUE VIENE
+    public void agregarPartida(Partida partida) {
+        if (this.partidasSuspendidas.containsKey(partida.getFechaCreada())) {
             this.partidasSuspendidas.remove(partida.getFechaCreada());
             this.partidasSuspendidas.put(partida.getFechaCreada(), partida);
-        }
-        else {
+        } else {
             this.partidasSuspendidas.put(partida.getFechaCreada(), partida);
         }
     }
 
+    //BUSCA UNA PARTIDA POR FECHA EN EL MAPA
     public Partida buscarPartida(String fecha) {
         return this.partidasSuspendidas.get(fecha);
     }
 }
-        

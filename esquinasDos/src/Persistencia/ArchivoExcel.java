@@ -9,7 +9,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class ArchivoExcel {
 
-    public void crearExcel(Sistema sis, String nombreArchivo,String path) {
+    //ESTE METODO CREA UN EXCEL A PARTIR DEL RANKING
+    public void crearExcel(Sistema sis, String nombreArchivo, String path) {
         try {
             //PARA HACER LA PARTE DEL NOMBRE Y LA UBICACION, TENGO QUE HACERLO CUANDO ESTEN LAS VENTANAS HECHAS, SI LO HAGO ACA ES CODIGO QUE DESPUES NO SIRVE
             String filename = nombreArchivo + ".xls";
@@ -29,7 +30,7 @@ public class ArchivoExcel {
                 row.createCell(2).setCellValue((sis.getListaJugadores().get(i)).getJuegosGanados());
             }
 
-            FileOutputStream fileOut = new FileOutputStream(path+"\\"+filename);
+            FileOutputStream fileOut = new FileOutputStream(path + "\\" + filename);
             System.out.println(path);
             System.out.println(filename);
             workbook.write(fileOut);
@@ -40,6 +41,8 @@ public class ArchivoExcel {
         }
     }
 
+    //CONSTRUCTOR DE LA CLASE ARCHIVO EXCEL
     public ArchivoExcel() {
+
     }
 }

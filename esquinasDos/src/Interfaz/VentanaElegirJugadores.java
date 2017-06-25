@@ -8,14 +8,17 @@ import javax.swing.JOptionPane;
 
 public class VentanaElegirJugadores extends JFrame {
 
+    //VARIABLE PRIVADA DE LA CLASE VENTANAELEGIRJGUADORES
     private final Sistema sistema;
-    
+
+    //CONSTRUCTOR DE LA CLASE VENTANAELEGIRJUGADORES
     public VentanaElegirJugadores(Sistema modelo) {
         sistema = modelo;
         initComponents();
         this.comboBoxUnoJugadores.removeAllItems();
         this.comboBoxDosJugadores.removeAllItems();
-        for (int i=0;i<this.sistema.getListaJugadores().size();i++){
+        this.textAreaInfoTimer.setEditable(false);
+        for (int i = 0; i < this.sistema.getListaJugadores().size(); i++) {
             this.comboBoxUnoJugadores.addItem(this.sistema.getListaJugadores().get(i).getAlias());
         }
     }
@@ -33,7 +36,9 @@ public class VentanaElegirJugadores extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        timerComboBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaInfoTimer = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +93,18 @@ public class VentanaElegirJugadores extends JFrame {
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
         jLabel3.setText("TIMER");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", " ", " " }));
+        timerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        timerComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timerComboBoxActionPerformed(evt);
+            }
+        });
+
+        textAreaInfoTimer.setColumns(20);
+        textAreaInfoTimer.setFont(new java.awt.Font("Tempus Sans ITC", 0, 12)); // NOI18N
+        textAreaInfoTimer.setRows(5);
+        textAreaInfoTimer.setText("El timer indica cuanto tiempo tiene el jugador para realizar el \nmovimiento de su turno. Si elige \"1\" sera un minuto.\nModos de timer: 1 min, 2 min, 3 min, 4 min y 5 min.\nEl Primer movimiento tiene un tiempo limite de 5 minutos. Si no se \nrealiza dicho movimiento el jugador 1 pierde la partida!");
+        jScrollPane1.setViewportView(textAreaInfoTimer);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,25 +119,27 @@ public class VentanaElegirJugadores extends JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(buttonJugarContraPC))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(comboBoxUnoJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(buttonJugarEntreJugadores)
-                                .addGap(32, 32, 32)
-                                .addComponent(buttonVolver))
-                            .addComponent(comboBoxDosJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(timerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(36, 36, 36)
+                                    .addComponent(buttonJugarContraPC))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(28, 28, 28)
+                                    .addComponent(comboBoxUnoJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(32, 32, 32)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(buttonJugarEntreJugadores)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(buttonVolver))
+                                .addComponent(comboBoxDosJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,8 +156,10 @@ public class VentanaElegirJugadores extends JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                    .addComponent(timerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonJugarEntreJugadores)
                     .addComponent(buttonVolver)
@@ -161,10 +181,11 @@ public class VentanaElegirJugadores extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //ESTE METODO GENERA EL CODIGO Y LA VENTANA PARA PODER JUGAR ENTRE JUGADORES
     private void buttonJugarEntreJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarEntreJugadoresActionPerformed
         if (this.sistema.getListaJugadores().size() > 1) {
             VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema, 1);
-            sistema.crearPartidaNormal(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()),new Date().toString());
+            sistema.crearPartidaNormal(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), this.sistema.getJugadorPorAlias(this.comboBoxDosJugadores.getSelectedItem().toString()), new Date().toString(), this.timerComboBox.getSelectedIndex() + 1);
             final JDialog frame = new JDialog(ventanaJuegoNormal, "Esquinas", true);
             frame.getContentPane().add(ventanaJuegoNormal.getContentPane());
             frame.setLocationRelativeTo(null);
@@ -173,39 +194,43 @@ public class VentanaElegirJugadores extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay dos o mas jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        dispose();
     }//GEN-LAST:event_buttonJugarEntreJugadoresActionPerformed
 
+    //ESTE BOTON VUELVE HACIA ATRAS
     private void buttonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVolverActionPerformed
         dispose();
     }//GEN-LAST:event_buttonVolverActionPerformed
 
+    //ESTE METODO GENERA EL CODIGO Y LA VENTANA PARA PODER JUGAR CONTRA LA PC
     private void buttonJugarContraPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJugarContraPCActionPerformed
-        int opcion; 
-        opcion = JOptionPane.showConfirmDialog(null, "En este modo de juego solo jugara el jugador elegido en la casilla de Jugador 1. Desea Jugar? " , "CONFIRMAR", JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
+        int opcion;
+        opcion = JOptionPane.showConfirmDialog(null, "En este modo de juego solo jugara el jugador elegido en la casilla de Jugador 1. Desea Jugar? ", "CONFIRMAR", JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
         if (opcion == JOptionPane.OK_OPTION) {
             //SI EL JUGADOR ELIGE OK PASA A EVALUAR SI HAY MAS DE UN JUGADOR
             if (this.sistema.getListaJugadores().size() > 0) {
                 //ACA AGREGAMOS EL INICIO DE LA VENTANA DE PC IGUAL QUE EL DE JUGADOR
                 VentanaJuegoPC ventanaJuegoPC = new VentanaJuegoPC(sistema);
-                sistema.crearPartidaPC(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), new Date().toString());
+                sistema.crearPartidaPC(this.sistema.getJugadorPorAlias(this.comboBoxUnoJugadores.getSelectedItem().toString()), new Date().toString(), this.timerComboBox.getSelectedIndex() + 1);
                 final JDialog frame = new JDialog(ventanaJuegoPC, "Esquinas", true);
                 frame.getContentPane().add(ventanaJuegoPC.getContentPane());
                 frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
-            }
-            else {
+            } else {
                 //SINO AVISAMOS
                 JOptionPane.showMessageDialog(this, "No hay jugadores registrados. ", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
+        dispose();
     }//GEN-LAST:event_buttonJugarContraPCActionPerformed
 
+    //ESTE METODO COMPRUEBA QUE NUNCA HAYA EL MISMO JUGADOR EN EL COMBO BOX 2 SI YA ESTA EN EL 1
     private void comboBoxUnoJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxUnoJugadoresActionPerformed
         this.comboBoxDosJugadores.removeAllItems();
-        for (int i=0;i<this.sistema.getListaJugadores().size();i++){
-            if (i!=this.comboBoxUnoJugadores.getSelectedIndex()){
-            this.comboBoxDosJugadores.addItem(this.sistema.getListaJugadores().get(i).getAlias());
+        for (int i = 0; i < this.sistema.getListaJugadores().size(); i++) {
+            if (i != this.comboBoxUnoJugadores.getSelectedIndex()) {
+                this.comboBoxDosJugadores.addItem(this.sistema.getListaJugadores().get(i).getAlias());
             }
         }
     }//GEN-LAST:event_comboBoxUnoJugadoresActionPerformed
@@ -214,17 +239,22 @@ public class VentanaElegirJugadores extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxDosJugadoresActionPerformed
 
+    private void timerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timerComboBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonJugarContraPC;
     private javax.swing.JButton buttonJugarEntreJugadores;
     private javax.swing.JButton buttonVolver;
     private javax.swing.JComboBox<String> comboBoxDosJugadores;
     private javax.swing.JComboBox<String> comboBoxUnoJugadores;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textAreaInfoTimer;
+    private javax.swing.JComboBox<String> timerComboBox;
     // End of variables declaration//GEN-END:variables
 }
-

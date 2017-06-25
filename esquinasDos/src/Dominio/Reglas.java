@@ -3,8 +3,8 @@ package Dominio;
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
-public class Reglas implements Serializable{
-    
+public class Reglas implements Serializable {
+
     //VARIABLE PRIVADA DE LA CLASE REGLAS
     private final Condiciones condiciones;
 
@@ -128,36 +128,38 @@ public class Reglas implements Serializable{
         }
         return puntaje;
     }
-    
-    public String devuelveLetra (int j){
-        String ret="";
+
+    //METODO QUE DEVUELVE LA LETRA
+    public String devuelveLetra(int j) {
+        String ret = "";
         switch (j) {
             case 0:
-                ret="A";
+                ret = "A";
                 break;
             case 1:
-                ret="B";
+                ret = "B";
                 break;
             case 2:
-                ret="C";
+                ret = "C";
                 break;
             case 3:
-                ret="D";
+                ret = "D";
                 break;
             case 4:
-                ret="E";
+                ret = "E";
                 break;
             case 5:
-                ret="F";
+                ret = "F";
                 break;
-                
+
         }
         return ret;
     }
-    
-    public String stringProntaParaAppend(int i,int j){
-        int auxJ=j+1;
-        return this.devuelveLetra(i)+auxJ;
+
+    //METODO QUE DEVUELVE LA LA POSICION PARA HACER 
+    public String stringProntaParaAppend(int i, int j) {
+        int auxJ = j + 1;
+        return this.devuelveLetra(i) + auxJ;
     }
 
     //METODO QUE DEVUELVE TRUE SI HAY UNA FICHA ADYACENTE EN DONDE SE QUIERE COLOCAR FICHA
@@ -228,81 +230,81 @@ public class Reglas implements Serializable{
     }
 
     //METODO QUE DEVUELVE LA CANTIDAD DE FICHAS DISPONIBLES DEL JUGADOR DESPUES DE VERIFICAR LAS ESQUINAS FORMADAS Y DESPUES DE REALIZADA LA JUGADA
-    public int seFormoEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles,JTextArea logueo) {
+    public int seFormoEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles, JTextArea logueo) {
         this.condiciones.chequeadorCondiciones(i, j, tablero);
         //logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
         logueo.append("");
         tablero.getFicha(i, j).setValor(1);
-        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
         fichasDisponibles = fichasDisponibles - 1;
         tablero.getFicha(i, j).setColor(color);
         if (this.condiciones.isCondInternaDelTablero()) {
             //INTERNO DEL TABLERO
             if (this.condiciones.isCondArriba() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondArriba() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                 tablero.getFicha(i + 1, j).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                 tablero.getFicha(i, j + 1).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                 tablero.getFicha(i, j - 1).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                 tablero.getFicha(i + 1, j).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                 tablero.getFicha(i - 1, j).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalArribaDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                 tablero.getFicha(i, j + 1).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalArribaIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                 tablero.getFicha(i, j - 1).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
             if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                 tablero.getFicha(i - 1, j).setColor(color);
                 fichasDisponibles = fichasDisponibles - 1;
             }
@@ -315,18 +317,18 @@ public class Reglas implements Serializable{
                         case 0:
                             if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                                 tablero.getFicha(i, j + 1).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                                 tablero.getFicha(i + 1, j).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
@@ -334,18 +336,18 @@ public class Reglas implements Serializable{
                         case 5:
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                                 tablero.getFicha(i, j - 1).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondAbajo() && this.condiciones.isDiagonalAbajoIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                                 tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                                 tablero.getFicha(i + 1, j).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
@@ -357,18 +359,18 @@ public class Reglas implements Serializable{
                         case 0:
                             if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                                 tablero.getFicha(i - 1, j).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondDerecha() && this.condiciones.isDiagonalArribaDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                                 tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                                 tablero.getFicha(i, j + 1).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
@@ -376,18 +378,18 @@ public class Reglas implements Serializable{
                         case 5:
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                                 tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isCondIzquierda() && this.condiciones.isDiagonalArribaIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                                 tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                                 tablero.getFicha(i, j - 1).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
                             if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                                 tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                                logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                                logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                                 tablero.getFicha(i - 1, j).setColor(color);
                                 fichasDisponibles = fichasDisponibles - 1;
                             }
@@ -399,35 +401,35 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaUno()) {
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                     tablero.getFicha(i, j - 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                     tablero.getFicha(i + 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                     tablero.getFicha(i + 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                     tablero.getFicha(i, j + 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
@@ -436,35 +438,35 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaDos()) {
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                     tablero.getFicha(i, j - 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                     tablero.getFicha(i - 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                     tablero.getFicha(i - 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                     tablero.getFicha(i, j + 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
@@ -472,35 +474,35 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaTres()) {
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                     tablero.getFicha(i - 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                     tablero.getFicha(i, j + 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondDerecha() && fichasDisponibles >= 1 && tablero.getFicha(i, j + 1).getValor() < 5) {
                     tablero.getFicha(i, j + 1).setValor(tablero.getFicha(i, j + 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j+1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j + 1) + "\n");
                     tablero.getFicha(i, j + 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoDerecha() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                     tablero.getFicha(i + 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
@@ -508,35 +510,35 @@ public class Reglas implements Serializable{
             if (this.condiciones.isCondExternaCuatro()) {
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isCondIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i, j).getValor() < 5) {
                     tablero.getFicha(i, j).setValor(tablero.getFicha(i, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j) + "\n");
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondArriba() && fichasDisponibles >= 1 && tablero.getFicha(i - 1, j).getValor() < 5) {
                     tablero.getFicha(i - 1, j).setValor(tablero.getFicha(i - 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i-1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i - 1, j) + "\n");
                     tablero.getFicha(i - 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalArribaIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                     tablero.getFicha(i, j - 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondIzquierda() && fichasDisponibles >= 1 && tablero.getFicha(i, j - 1).getValor() < 5) {
                     tablero.getFicha(i, j - 1).setValor(tablero.getFicha(i, j - 1).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,j-1)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, j - 1) + "\n");
                     tablero.getFicha(i, j - 1).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
                 if (this.condiciones.isDiagonalAbajoIzquierda() && this.condiciones.isCondAbajo() && fichasDisponibles >= 1 && tablero.getFicha(i + 1, j).getValor() < 5) {
                     tablero.getFicha(i + 1, j).setValor(tablero.getFicha(i + 1, j).getValor() + 1);
-                    logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i+1,j)+"\n");
+                    logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i + 1, j) + "\n");
                     tablero.getFicha(i + 1, j).setColor(color);
                     fichasDisponibles = fichasDisponibles - 1;
                 }
@@ -546,7 +548,7 @@ public class Reglas implements Serializable{
     }
 
     //METODO QUE DEVUELVE LA CANTIDAD DE FICHAS DISPONIBLES DEL JUGADOR DESPUES DE VERIFICAR SI SE EXTENDIO ESQUINA Y DESPUES DE REALIZADA LA JUGADA.
-    public int seExtendioEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles,JTextArea logueo) {
+    public int seExtendioEsquina(int i, int j, Tablero tablero, int color, int fichasDisponibles, JTextArea logueo) {
         int iAtras = i - 1;
         int iAdelante = i + 1;
         int jAtras = j - 1;
@@ -572,13 +574,13 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(x,j)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(x, j) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(x,j)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(x, j) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
@@ -610,13 +612,13 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(x,j)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(x, j) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(x, j).getValor() < 5) {
                         tablero.getFicha(x, j).setValor(tablero.getFicha(x, j).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(x,j)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(x, j) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(x, j).setColor(color);
                     }
@@ -648,13 +650,13 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,x)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, x) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,x)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, x) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
@@ -686,13 +688,13 @@ public class Reglas implements Serializable{
                     //ACA, SI HAY QUE EXTENDER ES TRUE, QUIERE DECIR SE ENCONTRO UNA ESQUINA Y PROCEDO A TRABAJAR CON ELLA
                     if (tengoQueExtenderHaciaArriba && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,x)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, x) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
                     if (tengoQueExtenderHaciaAbajo && fichasDisponibles > 0 && tablero.getFicha(i, x).getValor() < 5) {
                         tablero.getFicha(i, x).setValor(tablero.getFicha(i, x).getValor() + 1);
-                        logueo.append("Se puso un cubo en la posicion "+this.stringProntaParaAppend(i,x)+"\n");
+                        logueo.append("Se puso un cubo en la posicion " + this.stringProntaParaAppend(i, x) + "\n");
                         fichasDisponibles = fichasDisponibles - 1;
                         tablero.getFicha(i, x).setColor(color);
                     }
@@ -1204,7 +1206,7 @@ public class Reglas implements Serializable{
     }
 
     //METODO QUE EVALUA LA MATRIZ DE INTS Y DECIDE CUAL ES EL MAXIMO PARA EFECTUAR LA JUGADA DE LA PC Y DEVUELVE LA CANTIDAD DE FICHAS DISPONIBLES
-    public int mejorJugadaPC(Tablero tablero, int fichasDisponibles,JTextArea logueo) {
+    public int mejorJugadaPC(Tablero tablero, int fichasDisponibles, JTextArea logueo) {
         int maximo = 0;
         int[][] matrizInt = new int[6][6];
         for (int i = 0; i < 6; i++) { //ESTA ES LA MATRIZ DE INT QUE VAMOS A USAR PARA VER EN QUE POSICION DEL TABLERO SE PONEN MAS FICHAS
@@ -1225,8 +1227,8 @@ public class Reglas implements Serializable{
         for (int i = 0; i < 6; i++) { //PRIMERO RECORRO LA MATRIZ BUSCANDO EL MAXIMO
             for (int j = 0; j < 6; j++) {
                 if (matrizInt[i][j] == maximo && !puse) {
-                    fichasDisponibles = this.seFormoEsquina(i, j, tablero, 2, fichasDisponibles,logueo);
-                    fichasDisponibles = this.seExtendioEsquina(i, j, tablero, 2, fichasDisponibles,logueo);
+                    fichasDisponibles = this.seFormoEsquina(i, j, tablero, 2, fichasDisponibles, logueo);
+                    fichasDisponibles = this.seExtendioEsquina(i, j, tablero, 2, fichasDisponibles, logueo);
                     puse = true;
                 }
             }

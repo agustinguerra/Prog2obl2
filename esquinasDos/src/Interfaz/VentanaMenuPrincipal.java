@@ -7,8 +7,10 @@ import javax.swing.JDialog;
 
 public class VentanaMenuPrincipal extends JFrame {
 
+    //VARIABLE PRIVADA DE LA CLASE VENTANAMENUPRINCIPAL
     private final Sistema sistema;
 
+    //CONSTRUCTOR DE LA CLASE VETANAMENUPRINCIPAL
     public VentanaMenuPrincipal(Sistema modelo) {
         sistema = modelo;
         initComponents();
@@ -109,6 +111,7 @@ public class VentanaMenuPrincipal extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //ESTE BOTON SAOLE DEL PROGRAMA Y SERIALIZA DATOS
     private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?", "AVISO", JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
         if (opcion == JOptionPane.OK_OPTION) {
@@ -118,6 +121,7 @@ public class VentanaMenuPrincipal extends JFrame {
         }
     }//GEN-LAST:event_buttonSalirActionPerformed
 
+    //ESTE BOTON ABRE LA VENTANA PARA REGISTRAR JUGADORES
     private void buttonRegistrarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegistrarJugadorActionPerformed
         VentanaRegistrarJugador registroJugador = new VentanaRegistrarJugador(sistema);
         final JDialog frame = new JDialog(registroJugador, "Esquinas", true);
@@ -127,6 +131,7 @@ public class VentanaMenuPrincipal extends JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_buttonRegistrarJugadorActionPerformed
 
+    //ESTE BOTON ABRE LA VENTANA DE ELEGIR JUGADORES PARA PODER SELECCIONAR CONFIGURACIONES Y MODOS DE JUEGOS
     private void buttonBotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBotonJugarActionPerformed
         if (sistema.getListaJugadores().size() > 0) {
             VentanaElegirJugadores elegirJugadores = new VentanaElegirJugadores(sistema);
@@ -140,6 +145,7 @@ public class VentanaMenuPrincipal extends JFrame {
         }
     }//GEN-LAST:event_buttonBotonJugarActionPerformed
 
+    //ESTE BOTON ABRE LA VENTANA DEL RANKING
     private void buttonRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRankingActionPerformed
         VentanaRanking ranking = new VentanaRanking(sistema);
         final JDialog frame = new JDialog(ranking, "Esquinas", true);
@@ -153,6 +159,7 @@ public class VentanaMenuPrincipal extends JFrame {
 
     }//GEN-LAST:event_formWindowClosing
 
+    //ESTE BOTON ABRE LA VENTANA DE CARGAR PARTIDA
     private void buttonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCargarPartidaActionPerformed
         VentanaReanudarPartida cargarPartida = new VentanaReanudarPartida(sistema);
         final JDialog frame = new JDialog(cargarPartida, "Esquinas", true);

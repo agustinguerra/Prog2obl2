@@ -62,7 +62,7 @@ public class Tablero implements Serializable {
         }
         return fichaParaImprimir;
     }
-    
+
     //CONSTRUCTOR VACIO DE LA CLASE TABLERO
     public Tablero() {
         this.matriz = new Ficha[6][6];

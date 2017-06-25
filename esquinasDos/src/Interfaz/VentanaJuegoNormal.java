@@ -1,33 +1,36 @@
 package Interfaz;
 
-import javax.swing.Timer;
+import java.util.Timer;
+import java.util.TimerTask;
 import Dominio.Sistema;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+import javax.swing.JOptionPane;
 
 public class VentanaJuegoNormal extends JFrame {
+
+    //VARIABLES PRIVADAS DE LA CLASE VENTANAJUEGO NORMAL
     private final JButton[][] botones;
     private final Sistema sistema;
-    
     private int jugadorUnoFichas;
     private int jugadorDosFichas;
-    
     private boolean movimientoValido;
-    private boolean esPrimerTurno; 
-    
+    private boolean esPrimerTurno;
     private int turnoDe;
-        
     private boolean turnoDeCheck;
+    private Reminder timer;
 
+    //CONSTRUCTOR DE LA CLASE VENTANAJUEGONORMAL
     public VentanaJuegoNormal(Sistema modelo, int modo) {
         sistema = modelo;
         initComponents();
+        this.timer = new Reminder(300);
         textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         textAreaInfo.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
-        textAreaLogueo.setText("Bienvenido al juego!"+"\n");
+        textAreaLogueo.setText("Bienvenido al juego!" + "\n");
         textAreaLogueo.setEditable(false);
         jPanel1.setLayout(null);
         panelJuego.setLayout(new GridLayout(6, 7));
@@ -80,7 +83,7 @@ public class VentanaJuegoNormal extends JFrame {
                 this.turnoDeCheck = true;
                 this.turnoDe = 1;
                 break;
-            case 2:     
+            case 2:
                 this.jugadorUnoFichas = this.sistema.getPartida().getfJUno();
                 this.jugadorDosFichas = this.sistema.getPartida().getfJDos();
 
@@ -112,7 +115,7 @@ public class VentanaJuegoNormal extends JFrame {
         textAreaInfo = new javax.swing.JScrollPane();
         textAreaLogueo = new javax.swing.JTextArea();
         buttonGuardar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        buttonSalir = new javax.swing.JButton();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -182,14 +185,14 @@ public class VentanaJuegoNormal extends JFrame {
             }
         });
         jPanel1.add(buttonRendirse);
-        buttonRendirse.setBounds(230, 380, 120, 32);
+        buttonRendirse.setBounds(230, 380, 120, 33);
 
         textAreaLogueo.setColumns(20);
         textAreaLogueo.setRows(5);
         textAreaInfo.setViewportView(textAreaLogueo);
 
         jPanel1.add(textAreaInfo);
-        textAreaInfo.setBounds(420, 20, 350, 330);
+        textAreaInfo.setBounds(420, 20, 350, 430);
 
         buttonGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
         buttonGuardar.setText("Guardar");
@@ -199,11 +202,17 @@ public class VentanaJuegoNormal extends JFrame {
             }
         });
         jPanel1.add(buttonGuardar);
-        buttonGuardar.setBounds(80, 380, 120, 32);
+        buttonGuardar.setBounds(60, 380, 120, 33);
 
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(560, 410, 70, 19);
+        buttonSalir.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
+        buttonSalir.setText("Salir");
+        buttonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonSalir);
+        buttonSalir.setBounds(153, 430, 100, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,15 +229,18 @@ public class VentanaJuegoNormal extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //ESTE BOTON AL CLICKEARSE GUARDA LA PARTIDA PARA SER RETOMADA DESPUES
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
         this.sistema.getPartida().setfJUno(jugadorUnoFichas);
         this.sistema.getPartida().setfJDos(jugadorDosFichas);
         this.sistema.getPartida().settDeCheck(turnoDeCheck);
         this.sistema.getPartidasSuspendidas().agregarPartida(this.sistema.getPartida());
         JOptionPane.showMessageDialog(this, "La partida se guardo correctamente", "Exito", JOptionPane.PLAIN_MESSAGE);
+        this.timer.timer.cancel();
         dispose();
     }//GEN-LAST:event_buttonGuardarActionPerformed
 
+    //BOTON RENDIRSE, ESTE BOTON HACE LA FUNCION RENDIRSE CONTRA JUGADOR
     private void buttonRendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRendirseActionPerformed
         if (turnoDe == 1) {
             int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
@@ -240,15 +252,24 @@ public class VentanaJuegoNormal extends JFrame {
             JOptionPane.showMessageDialog(this, "El jugador 1 se rindio. Gano el jugador 2. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
         }
         this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
+        this.timer.timer.cancel();
         dispose();
     }//GEN-LAST:event_buttonRendirseActionPerformed
+
+    //ESTE SALIR, SALE DEL JUEGO
+    private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
+        JOptionPane.showMessageDialog(this, "Al salir de la partida, si la misma estaba guardada se perdera toda la informacion.", "INFO", JOptionPane.PLAIN_MESSAGE);
+        this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada());
+        this.timer.timer.cancel();
+        dispose();
+    }//GEN-LAST:event_buttonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonRendirse;
+    private javax.swing.JButton buttonSalir;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
     private javax.swing.JPanel numeros;
@@ -257,6 +278,7 @@ public class VentanaJuegoNormal extends JFrame {
     private javax.swing.JTextArea textAreaLogueo;
     // End of variables declaration//GEN-END:variables
 
+    //ESTA CLASE ESCUCHA AL CLICK DEL BOTON Y GUARDA EL X e Y QUE SE CLICKEO EN LA MATRIZ DE BOTONES
     private class ListenerBoton implements ActionListener {
 
         private int x;
@@ -275,14 +297,50 @@ public class VentanaJuegoNormal extends JFrame {
         }
     }
 
+    //ESTA CLASE SE ENCARGA DE MANEJAR AL TIMER
+    private class Reminder {
+
+        Timer timer;
+
+        public Reminder(int seconds) {
+            timer = new Timer();
+            timer.schedule(new RemindTask(), seconds * 1000);
+        }
+
+        class RemindTask extends TimerTask {
+
+            @Override
+            public void run() {
+                timer.cancel(); //Terminate the timer thread
+                seTerminoTimer();
+                dispose();
+            }
+        }
+    }
+
+    //ESTE METODO CHEQUEA SI SE TERMINO EL TIMER
+    private void seTerminoTimer() {
+        if (turnoDe == 1) {
+            int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
+            this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
+            JOptionPane.showMessageDialog(this, "Se le termino el tiempo al jugador 2! Ha perdido. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
+        } else if (turnoDe == 2) {
+            int jGanados = this.sistema.getPartida().getJugadorDos().getJuegosGanados();
+            this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
+            JOptionPane.showMessageDialog(this, "Se le termino el tiempo al jugador 1! Ha perdido. Se le ha sumado 1 a su historial de juegos Ganados! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
+        }
+        this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
+    }
+
+    //ESTE METODO MANEJA EL JUEGO JUGADOR VS JUGADOR
     private void clickBoton(int fila, int columna) {
         //CHEQUEAR QUE EL MOVIMINEOT ES VALIDO
         //SI ES VALIDO, CHEQUEAR QUE JUGADOR ES EL TURNO Y PONER LA FICHA EN EL ARRAY DE LA PARTIDA
         //CAMBIAR TURNO DE JUGADOR(VARIABLE DE CLASE)
         //LLAMAR A REFRESCAR MATRIZ
-      
+
         movimientoValido = false;
-        
+
         if (turnoDeCheck) { //DEPENDE DE QUIEN SEA EL TURNO, A QUIEN LE DOY LA BIENVENIDA
             turnoDe = 1;
         } else {
@@ -298,18 +356,22 @@ public class VentanaJuegoNormal extends JFrame {
             if (esPrimerTurno == true || sistema.libroDeReglas.tieneAdyacente(fichaI, fichaJ, this.sistema.getPartida().getTablero())) {
                 esPrimerTurno = false; //SI ES EL PRIMER TURNO, NUNCA VA A TENER ADYACENTE, POR ESO ESTE CONTROL ESPECIAL
                 movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
+                this.timer.timer.cancel();
+                this.timer = new Reminder(this.sistema.getPartida().getTimer() * 60);
             }
         }
-        
+
         if (movimientoValido) {
             //AQUI YA SE A DONDE EL JUGADOR QUIERE MOVER LA FICHA, Y SE QUE EL MOVIMIENTO ES VALIDO. PROCEDO A HACER LA JUGADA
             if (turnoDe == 1) {
-                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
-                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas, textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas, textAreaLogueo);
+
                 //ACA VA EL METODO DE EXTENDERLAS
             } else if (turnoDe == 2) {
-                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas,textAreaLogueo);
-                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas,textAreaLogueo);
+                jugadorDosFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas, textAreaLogueo);
+                jugadorDosFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorDosFichas, textAreaLogueo);
+
                 //ACA VA EL METODO DE EXTENDERLAS
             }
         }
@@ -319,25 +381,17 @@ public class VentanaJuegoNormal extends JFrame {
             turnoDeCheck = !turnoDeCheck;
         }
         refrescarMatriz();
-       
 
         // Método a completar!.
         // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
         // fila 1 y columna 1 corresponden a la posición de arriba a la izquierda.
         // Debe indicarse cómo responder al click de ese botón.
     }
-        
+
+    //ESTE METODO REFRESCA LA MATRIZ DE BOTONES, YA QUE NOSOTROS TRABAJAMOS EN LA MATRIZ DE FICHAS!
     private void refrescarMatriz() {
         //CHEQUEAR QUE LA PARTIDA NO TERMINO
         //SI NO TERMINO, REFRESCO LA MATRIZ EN PANTALLA
-
-         if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-            chequearPuntajes();
-            dispose();
-        } else {
-            //turnoDeCheck = !turnoDeCheck; //SI LA PARTIDA NO TERMINO, CAMBIO EL TURNO AL OTRO JUGADOR
-        }
-        
         for (int i = 1; i < 7; i++) {
             for (int j = 1; j < 7; j++) {
                 int valor;
@@ -386,22 +440,28 @@ public class VentanaJuegoNormal extends JFrame {
                 }
             }
         }
+        if ((jugadorUnoFichas == 0) || (jugadorDosFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
+            chequearPuntajes();
+            this.timer.timer.cancel();
+            dispose();
+        }
     }
 
-    //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
-    public void chequearPuntajes() {                       
+    //ESTE METODO ES EL QUE CHEQUEA LOS PUNTAJES UNA VEZ FINALIZADA LA PARTIDA
+    public void chequearPuntajes() {
         if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
             this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
-            JOptionPane.showMessageDialog(this, "El jugador 1 ha ganado la partida. Se actualizara el ranking.", "Info", JOptionPane.PLAIN_MESSAGE);    
+            JOptionPane.showMessageDialog(this, "FIN DEL JUEGO! \n" + "Puntajes \n" + "Jugador 1: " + sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) + "\nJugador 2: " + sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero()) + "\nEl jugador 1 ha ganado la partida. Se actualizara el ranking. ", "Info", JOptionPane.PLAIN_MESSAGE);
         } else if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorDos().getJuegosGanados();
             this.sistema.getPartida().getJugadorDos().setJuegosGanados(jGanados + 1);
-            JOptionPane.showMessageDialog(this, "El jugador 2 ha ganado la partida. Se actualizara el ranking. ", "Info", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "FIN DEL JUEGO! \n" + "Puntajes \n" + "Jugador 1: " + sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) + "\nJugador 2: " + sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero()) + "\nEl jugador 2 ha ganado la partida. Se actualizara el ranking. ", "Info", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "El juego ha terminado en empate.", "Info", JOptionPane.PLAIN_MESSAGE);
         }
+        System.out.println(sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()));
+        System.out.println(sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero()));
         this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada());
-        
     }
 }

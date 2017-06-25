@@ -49,6 +49,4 @@ public class Ficha implements java.io.Serializable {
         this.color = color;
         this.valor = valor;
     }
-
-
 }

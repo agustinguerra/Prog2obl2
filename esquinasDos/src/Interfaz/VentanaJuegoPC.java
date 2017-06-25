@@ -5,28 +5,30 @@ import Dominio.Sistema;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.TimerTask;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
 public class VentanaJuegoPC extends JFrame {
 
+    //VARIABLES PRIVADAS DE LA CLASE VENTANAJUEGOPC QUE EXTIENDA JFRAME
     private final JButton[][] botones;
     private final Sistema sistema;
-
     private int jugadorUnoFichas;
     private int jugadorPCFichas;
-
     private boolean movimientoValido;
     private boolean esPrimerTurno;
-
     private int turnoDe;
+    private Reminder timer;
 
+    //CONSTRUCTOR DE LA CLASE VENTANAJUEGOPC
     public VentanaJuegoPC(Sistema modelo) {
         sistema = modelo;
         initComponents();
         textAreaInfo.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         textAreaInfo.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
         jPanel1.setLayout(null);
+        this.timer = new Reminder(300);
         panelJuego.setLayout(new GridLayout(6, 7));
         letras.setLayout(new GridLayout(6, 1));
         letras.setOpaque(false);
@@ -67,10 +69,8 @@ public class VentanaJuegoPC extends JFrame {
                 botones[i][j] = jButton;
             }
         }
-
         this.jugadorUnoFichas = 25;
         this.jugadorPCFichas = 25;
-
         this.esPrimerTurno = true;
         this.movimientoValido = false;
 
@@ -90,6 +90,7 @@ public class VentanaJuegoPC extends JFrame {
         buttonRendirse = new javax.swing.JButton();
         textAreaInfo = new javax.swing.JScrollPane();
         textAreaLogueo = new javax.swing.JTextArea();
+        buttonSalir = new javax.swing.JButton();
 
         javax.swing.GroupLayout noHayNombreLayout = new javax.swing.GroupLayout(noHayNombre.getContentPane());
         noHayNombre.getContentPane().setLayout(noHayNombreLayout);
@@ -159,7 +160,7 @@ public class VentanaJuegoPC extends JFrame {
             }
         });
         jPanel1.add(buttonRendirse);
-        buttonRendirse.setBounds(130, 380, 120, 32);
+        buttonRendirse.setBounds(130, 380, 120, 33);
 
         textAreaLogueo.setColumns(20);
         textAreaLogueo.setRows(5);
@@ -167,6 +168,16 @@ public class VentanaJuegoPC extends JFrame {
 
         jPanel1.add(textAreaInfo);
         textAreaInfo.setBounds(420, 20, 350, 410);
+
+        buttonSalir.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
+        buttonSalir.setText("Salir");
+        buttonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonSalir);
+        buttonSalir.setBounds(130, 430, 120, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,17 +194,25 @@ public class VentanaJuegoPC extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTON RENDIRSE, ESTE BOTON HACE LA FUNCION RENDIRSE CONTRA PC
     private void buttonRendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRendirseActionPerformed
         if (turnoDe == 1) {
             JOptionPane.showMessageDialog(this, "Te has rendido, La PC gano. Mejor suerte la proxima! ", "ERROR", JOptionPane.PLAIN_MESSAGE);
         }
-        //this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada()); //CUANDO SE TERMINA LA PARTIDA, CHEQUEO SI LA TENGO QUE ELIMINAR DE LA LISTA DE PARTIDAS
+        this.timer.timer.cancel();
         dispose();
     }//GEN-LAST:event_buttonRendirseActionPerformed
+
+    //ESTE SALIR, SALE DEL JUEGO
+    private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
+        this.timer.timer.cancel();
+        dispose();
+    }//GEN-LAST:event_buttonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRendirse;
+    private javax.swing.JButton buttonSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel letras;
     private javax.swing.JDialog noHayNombre;
@@ -203,17 +222,21 @@ public class VentanaJuegoPC extends JFrame {
     private javax.swing.JTextArea textAreaLogueo;
     // End of variables declaration//GEN-END:variables
 
+    //ESTA CLASE ESCUCHA AL CLICK DEL BOTON Y GUARDA EL X e Y QUE SE CLICKEO EN LA MATRIZ DE BOTONES
     private class ListenerBoton implements ActionListener {
 
+        //VARIABLES PRIVADAS DE LA CLASE LISTENERBOTON
         private int x;
         private int y;
 
+        //CONSTRUCTOR QUE ALMACENA LA FILA Y COLUMNA QUE SE PRESIONO
         public ListenerBoton(int i, int j) {
             //En el constructor se almacena la fila y columna que se presionó.
             x = i;
             y = j;
         }
 
+        //ESTE METODO LLAMA A CLICK BOTON UNA VEZ QUE SE HACE CLICK
         @Override
         public void actionPerformed(ActionEvent e) {
             //Cuando se presiona un botón, se ejecutará este método.
@@ -221,52 +244,66 @@ public class VentanaJuegoPC extends JFrame {
         }
     }
 
+    //ESTA CLASE SE ENCARGA DE MANEJAR AL TIMER
+    private class Reminder {
+
+        java.util.Timer timer;
+
+        public Reminder(int seconds) {
+            timer = new java.util.Timer();
+            timer.schedule(new RemindTask(), seconds * 1000);
+        }
+
+        class RemindTask extends TimerTask {
+
+            @Override
+            public void run() {
+                timer.cancel(); //Terminate the timer thread
+                seTerminoTimer();
+                dispose();
+            }
+        }
+    }
+
+    //ESTE METODO CHEQUEA SI SE TERMINO EL TIMER
+    private void seTerminoTimer() {
+        JOptionPane.showMessageDialog(this, "Se le termino el tiempo al jugador humano. Usted perdio. ", "ERROR", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    //ESTE METODO MANEJA EL JUEGO JUGADOR VS PC
     private void clickBoton(int fila, int columna) {
         movimientoValido = false;
-
         if (turnoDe == 1) {
-
             int fichaI;
             fichaI = fila - 1;
             int fichaJ;
             fichaJ = columna - 1;
-
-            System.out.println("entro pc aca" + turnoDe);
             if (!sistema.libroDeReglas.formaCuadrado(fichaI, fichaJ, this.sistema.getPartida().getTablero())) { //ACA PONGO TODOS LOS METODOS QUE VALIDAN EL MOVIMIENTO, 
                 if (esPrimerTurno == true || sistema.libroDeReglas.tieneAdyacente(fichaI, fichaJ, this.sistema.getPartida().getTablero())) {
                     esPrimerTurno = false; //SI ES EL PRIMER TURNO, NUNCA VA A TENER ADYACENTE, POR ESO ESTE CONTROL ESPECIAL
                     movimientoValido = true; //CONFIRMO QUE ES MOVIMIENTO VALIDO, SALE DEL WHILE Y SIGUE LA JUGADA.
+                    this.timer.timer.cancel();
+                    this.timer = new Reminder(this.sistema.getPartida().getTimer() * 60);
                 }
             }
             if (movimientoValido) {
-                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
-                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas,textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seFormoEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas, textAreaLogueo);
+                jugadorUnoFichas = sistema.libroDeReglas.seExtendioEsquina(fichaI, fichaJ, this.sistema.getPartida().getTablero(), turnoDe, jugadorUnoFichas, textAreaLogueo);
                 turnoDe = 2;
             }
         }
         if (turnoDe == 2) {
-            System.out.println("entro pc aca " + turnoDe);
-            jugadorPCFichas = inteligenciaArtificial(jugadorPCFichas, this.sistema.getPartida(),textAreaLogueo);
+            jugadorPCFichas = inteligenciaArtificial(jugadorPCFichas, this.sistema.getPartida(), textAreaLogueo);
             movimientoValido = true;
+            this.timer.timer.cancel();
+            this.timer = new Reminder(this.sistema.getPartida().getTimer() * 60);
             turnoDe = 1;
         }
-
         refrescarMatriz();
-
-        // Método a completar!.
-        // En fila y columna se reciben las coordenas donde presionó el usuario, relativas al comienzo de la grilla
-        // fila 1 y columna 1 corresponden a la posición de arriba a la izquierda.
-        // Debe indicarse cómo responder al click de ese botón.
     }
 
+    //ESTE METODO REFRESCA LA MATRIZ DE BOTONES, YA QUE NOSOTROS TRABAJAMOS EN LA MATRIZ DE FICHAS!
     private void refrescarMatriz() {
-        //CHEQUEAR QUE LA PARTIDA NO TERMINO
-        //SI NO TERMINO, REFRESCO LA MATRIZ EN PANTALLA
-
-        if ((jugadorUnoFichas == 0) || (jugadorPCFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
-            chequearPuntajes();
-            dispose();
-        }
         for (int i = 1; i < 7; i++) {
             for (int j = 1; j < 7; j++) {
                 int valor;
@@ -315,27 +352,31 @@ public class VentanaJuegoPC extends JFrame {
                 }
             }
         }
+        if ((jugadorUnoFichas == 0) || (jugadorPCFichas == 0)) { //CHEQUEO AL FINAL DE CADA TURNO PARA VER SI SE TERMINO LA PARTIDA
+            chequearPuntajes();
+            this.timer.timer.cancel();
+            dispose();
+        }
     }
 
-    //ESTE METODO ES EL QUE SE ENCARGA DE REALIZAR EL JUEGO JUGADOR VS JUGADOR
+    //ESTE METODO ES EL QUE CHEQUEA LOS PUNTAJES UNA VEZ FINALIZADA LA PARTIDA
     public void chequearPuntajes() {
         if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) > sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
             int jGanados = this.sistema.getPartida().getJugadorUno().getJuegosGanados();
             this.sistema.getPartida().getJugadorUno().setJuegosGanados(jGanados + 1);
-            JOptionPane.showMessageDialog(this, "El jugador 1 ha ganado la partida. Se actualizara el ranking.", "Info", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "FIN DEL JUEGO! \n" + "Puntajes \n" + "Jugador 1: " + sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) + "\nPC 2: " + sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero()) + "\nEl jugador 1 ha ganado la partida. Se actualizara el ranking. ", "Info", JOptionPane.PLAIN_MESSAGE);
         } else if (sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) < sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero())) {
-            JOptionPane.showMessageDialog(this, "La PC ha ganado la partida. Mejor suerte la proxima!. ", "Info", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "FIN DEL JUEGO! \n" + "Puntajes \n" + "Jugador 1: " + sistema.libroDeReglas.calcularPuntaje(1, this.sistema.getPartida().getTablero()) + "\nPC: " + sistema.libroDeReglas.calcularPuntaje(2, this.sistema.getPartida().getTablero()) + "\nLa PC ha ganado la partida. Mejor suerte la proxima! ", "Info", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "El juego ha terminado en empate.", "Info", JOptionPane.PLAIN_MESSAGE);
         }
         this.sistema.getPartidasSuspendidas().seTerminoPartida(this.sistema.getPartida().getFechaCreada());
-
     }
 
     //ESTE METODO SE ENCARGA DE SIMULAR LA IA DE LA PC (NIVEL: 9999 (INVENCIBLE))
-    public int inteligenciaArtificial(int fichasDisponibles, Partida partida,JTextArea logueo) {
+    public int inteligenciaArtificial(int fichasDisponibles, Partida partida, JTextArea logueo) {
         //METODO ENCARGADO DE TODO LO RELACIONADO CON EL JUEGO DE LA PC, DEVUELVE LAS FICHAS QUE QUEDARON LUEGO DEL MOVIMIENTO
-        fichasDisponibles = sistema.libroDeReglas.mejorJugadaPC(partida.getTablero(), fichasDisponibles,logueo);
+        fichasDisponibles = sistema.libroDeReglas.mejorJugadaPC(partida.getTablero(), fichasDisponibles, logueo);
         return fichasDisponibles;
     }
 }
