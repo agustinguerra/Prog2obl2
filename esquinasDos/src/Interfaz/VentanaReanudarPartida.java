@@ -126,7 +126,17 @@ public class VentanaReanudarPartida extends JFrame {
     private void buttonCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCargarPartidaActionPerformed
         if (this.sistema.getPartidasSuspendidas().getPartidasSuspendidas().size() >= 1) {
             VentanaJuegoNormal ventanaJuegoNormal = new VentanaJuegoNormal(sistema, 2);
-            sistema.reanudarPartida(this.sistema.getPartidasPausadas().getPartidasSuspendidas().get(this.comboBoxPartidas.getSelectedIndex()), new Date().toString());
+            int itemAt = this.comboBoxPartidas.getSelectedIndex();
+            Iterator it = this.sistema.getPartidasPausadas().getPartidasSuspendidas().entrySet().iterator();
+            int care = 0;
+            String fecha = "";
+            while (it.hasNext() && care <= itemAt) {
+                Map.Entry pair = (Map.Entry) it.next();
+                fecha = pair.getKey().toString();
+                care++;
+                //it.remove(); // avoids a ConcurrentModificationException
+            }
+            sistema.reanudarPartida(this.sistema.getPartidasPausadas().getPartidasSuspendidas().get(fecha), new Date().toString());
             final JDialog frame = new JDialog(ventanaJuegoNormal, "Esquinas", true);
             frame.getContentPane().add(ventanaJuegoNormal.getContentPane());
             frame.setLocationRelativeTo(null);

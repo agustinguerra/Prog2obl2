@@ -81,9 +81,11 @@ public class Sistema extends Observable implements Serializable {
     }
 
     public void reanudarPartida(Partida partidaReanudada, String fechaCreada) {
-        Partida p = new Partida();
-        p.setFechaCreada(fechaCreada);
-        p = partidaReanudada;
+        //Partida p = new Partida();
+        this.partida=partidaReanudada;
+        //p.setFechaCreada(fechaCreada);
+        //p = partidaReanudada;
+        //this.partida=p;
     }
 
     //ESTE METODO AGREGA UN JUGADOR DESDE LA INTERFAZ A LA LISTA DE JUGADORES
